@@ -71,3 +71,15 @@
      - *Contra:*
        - Pagina principală este prost structurată față de pagina dedicată jocurilor PC.
        - Imposibilitatea de a accesa subcategoriile dorite din pagina principală.
+   
+V. **Paleta Cromatica**
+
+- *Portocaliu Vibrant (#fb9804):* Am ales această nuanță de portocaliu pentru a aduce o notă energică și optimistă paginii mele. Este o culoare care atrage atenția și stimulează activitatea și se potrivește la nivel cromatic bine cu roșul ales.
+
+- *Roșu Puternic (#F53E00):* Roșul este asociat cu pasiunea și puterea. Am utilizat această nuanță pentru a evidenția elemente pentru a le putea scoate mai bine în evidență, dar și pentru că se poate regăsi pe multe echipamente de gaming.
+
+- *Verde Luminos (#CBFF2D):* Verdele este asociat cu prospețimea și natura, dar poate fi și o culoare reprezentativă pentru lumea jocurilor, sugerând aspecte precum vegetația, spațiile deschise și aventurile în aer liber. Este o nuanță optimistă și echilibrată, care poate oferi o senzație de siguranță și relaxare.
+
+- *Albastru Curat (#0CD0FF):* Albastrul este asociat cu liniștea și claritatea. L-am folosit pentru claritate și profesionalism.
+
+- *Nuanțe de Portocaliu (#E0512F, #E0B302, #F5D327):* Aceste nuanțe sunt variante mai deschise ale portocaliului, care adaugă adâncime și versatilitate designului meu.

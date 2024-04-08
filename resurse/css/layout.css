@@ -1,0 +1,87 @@
+html{
+    font-size: 18px;
+    font-family: "Ojuju", sans-serif;
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.info_oferte{
+    font-size: 1.5rem;
+}
+
+.imagine1{
+    width: 50%;
+}
+
+#grid-pagina{
+    display: grid;
+    grid-template-columns: repeat(3,1fr); /*1fr 1fr 1fr;*/
+
+    grid-template-areas:    "welcome welcome welcome"
+                            " orar orar promotii " 
+                            " orar orar fig1  "
+                            "fig2  fig3 produse "
+                            "fig8 fig8 fig8";
+}
+
+#grid-pagina>*{
+    outline: 2px solid skyblue;
+    padding: 1em;
+}
+#grid-pagina>figure{
+    margin: 0;
+
+}
+#welcome{
+    grid-area: welcome;
+}
+#promotii{
+    grid-area: promotii;
+}
+#orar{
+    grid-area: orar;
+}
+ 
+#fig1{
+    grid-area: fig1;
+}
+#fig2{
+    grid-area: fig2;
+}
+#fig3{
+    grid-area: fig3;
+}
+#produse{
+    grid-area: produse;
+}
+#fig8{
+    grid-area: fig8;
+}
+
+@media screen and (max-width:1200px){
+    html{
+        font-size: 15px;
+        
+    }
+    #grid-pagina{
+        grid-template-columns: repeat(2,1fr); /*1fr 1fr 1fr;*/
+    
+        grid-template-areas:    "welcome welcome "
+        " orar  promotii " 
+        " orar  fig1  "
+        "fig2  produse "
+        "fgi2 fig3"
+        "fig8 fig8 ";
+    }
+}
+
+@media screen and (max-width:800px){
+    html{
+        font-size: 12px;
+        
+    }
+    #grid-pagina{
+        display: block;
+
+    }
+}

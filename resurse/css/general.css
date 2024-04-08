@@ -1,0 +1,217 @@
+body {
+  --portocaliu: #fb9804;
+  --rosu: #F53E00;
+  --verde: #CBFF2D;
+  --albastru: #0CD0FF;
+  --port-rosu: #E0512F;
+  --port-deschis: #E0B302;
+  --port-galben: #F5D327;
+  --crem: #f3aa35;
+  --spatiere: 100px;
+  padding-left: var(--spatiere);
+  padding-right: var(--spatiere);
+  --culoare-deschisa: #E0B302;
+  --culoare-inchisa: #F53E00;
+}
+
+#link-top{
+    position:fixed;
+    bottom:0.3em;
+    opacity:0.3;
+    left:0.3em;
+    width:3rem;
+    box-sizing: border-box;
+    height:3rem;
+    line-height:3rem;
+    text-align:center;
+    border:5px solid #F57F27;
+      border-top-color:transparent;
+      border-bottom-color: transparent;
+    border-radius:50%;
+    background: transparent;/*#F5C379;*/
+
+  }
+
+
+  #link-top:hover{
+    opacity:1;
+
+
+
+  }
+  #triunghi{
+    height:0px;
+    width:0;
+    display:inline-block;
+    border-bottom:0.8rem solid #F5A127;
+    border-left:0.6rem solid transparent;
+    border-right:0.6rem solid transparent;
+    vertical-align: center;
+    transform: translatey(30%);
+    transform: scale(1,1);
+    transition:transform 0.3s linear, border-bottom 0.3s linear;
+  }
+  #link-top:hover>#triunghi{
+    transform: translatey(-80%);
+    border-bottom:0.8rem solid #F53E00;
+
+  }
+
+  #tab-orar th,#tab-orar td{
+    border: 1px solid black;
+    padding: 8px;
+
+  }
+  #tab-orar {
+    font-size: 12px; 
+    margin-bottom: 20px;
+    border-spacing: 5px; 
+    border: 5px solid black;
+    border-collapse: collapse;
+  }
+ /* #tab-orar th:nth-child(2n+1){
+    background-color: #0CD0FF;
+  }
+  #tab-orar th:nth-child(2n){
+    background-color: #CBFF2D;
+  }*/
+  .container-iframe {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+  .container-iframe iframe{
+    width: 100%;
+  }
+.taburi-iframe{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+  .taburi-iframe>a{
+    display: block;
+    border: 1px solid var(--rosu);
+    background-color: var(--crem);
+    box-shadow: 0 0 10px rgba(224,81,47, 0.7);
+    margin: 0 10px; 
+   padding: 0.6cm;
+   transition: background-color 2s ease; 
+  }
+  .taburi-iframe>a:last-child{
+    margin-bottom: 0;
+  }
+  .taburi-iframe>a:hover{
+
+    background-color: var(--rosu);
+  }
+
+  /* Text tabel(orar)*/
+  /*@keyframes miscare-tabel{
+    0% { transform: translateX(0); }
+    10%, 90% { transform: translateX(-10px); }
+    20%, 80% { transform: translateX(10px); }
+    30%, 50%, 70% { transform: translateX(-10px); }
+    40%, 60% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+  }
+  .text-oferta {
+    animation: miscare-tabel 2s infinite;
+}*/
+
+
+#tab-orar tr:nth-child(odd) td {
+  border-bottom-color: var(--rosu);
+}
+
+#tab-orar tr:nth-child(even) td {
+  border-bottom-color: var(--verde);
+}
+
+#tab-orar tr {
+  transition: background-color 0.5s ease;
+}
+
+#tab-orar tr:hover {
+  background-color: var(--port-rosu);
+}
+
+
+#tab-orar tr { transition: outline 0.5s ease; 
+  outline: 0;
+}
+
+#tab-orar tr:hover {
+  outline: 7px solid rgba(0, 0, 0, 0.7); 
+}
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+}
+/*@media screen and (max-width:1200px){
+  #tab-orar {
+    font-size: 3px; 
+    margin-bottom: 7px;
+    border-spacing: 2.5px; 
+    border: 5px solid black;
+    border-collapse: collapse;
+  }
+
+}
+@media screen and (max-width:800px){
+
+
+  #tab-orar {
+    font-size: 2px; 
+    margin-bottom: 5px;
+    border-spacing: 1px; 
+    border: 0px solid black;
+    border-collapse: collapse;
+  }
+}*/
+
+.arrow {
+  position: relative;
+  left: -10px; 
+}
+
+/*Video*/
+video {
+  display: block;
+  margin: 0 auto;
+}
+
+track {
+  background-image: linear-gradient(to bottom, #333, #666); 
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+::cue {
+  white-space: pre-line;
+}
+
+
+/* Stil pentru linkurile vizitate */
+a[href^="http"]:not(.taburi-iframe a) {
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(254,156,0,0.5729751373205532) 100%);
+  background-size: 0% 0%; 
+  background-position: center;
+  transition: background-size 0.5s linear;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+
+}
+a[href^="http"]:not(.taburi-iframe a):hover {
+  background-size: 100% 100%; 
+  background-position: center; 
+  border-radius: 100%; 
+}
+
+a[href^="http"]:not(.taburi-iframe a):active {
+  transition: 0;
+  border: 5px solid black ;
+  border-radius: 0%;
+  
+}

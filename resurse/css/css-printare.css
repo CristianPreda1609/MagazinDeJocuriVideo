@@ -1,0 +1,65 @@
+
+@media print {
+
+  img, video, iframe, audio, source, a[href="#top"] {
+    display: none !important;
+  }
+
+
+  footer p {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%; 
+    margin-right: 25%; 
+    border: 3px double black;
+    background-color: #f8f8f8;
+    padding: 10px;
+  }
+
+
+  body {
+    display: block !important;
+  }
+
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  nav ul, nav ul ul {
+    list-style-type: none;
+  }
+
+  #watermark {
+    position: fixed;
+    width: 60%;
+    height: 10%;
+    top: 45%;
+    left: 20%;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 20px;
+  }
+
+
+  nav, footer {
+    page-break-after: always;
+  }
+
+
+  @page :left {
+    margin-left: 2cm;
+    margin-right: 1cm;
+  }
+
+  @page :right {
+    margin-left: 1cm;
+    margin-right: 2cm;
+  }
+}

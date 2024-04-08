@@ -1,0 +1,109 @@
+nav{
+    --inaltime-meniu:2.5em;
+    --latime-buton:300px;
+    height: var(--inaltime-meniu);
+    background-color: var(--culoare-deschisa);
+}
+#hamburger, #ch-menu{
+    display: none;
+}
+#acasa-mediu{
+    display: none;
+}
+.meniu{
+    display: flex;
+    li{
+        border: 1px solid var(--culoare-inchisa);
+        width: var(--latime-buton);
+        height: var(--inaltime-meniu);
+        text-align: center;
+        box-sizing: border-box;
+
+        &:hover>ul{
+            display: block;
+            position: absolute;
+            z-index:100;
+            animation: animatie_submeniu 1s linear forwards;
+            transform-origin: center top;
+        }
+        div,  a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            line-height: var(--inaltime-meniu);
+            color: var(--crem);
+            text-decoration: none;
+            box-sizing: border-box;
+            transition: all 1s linear;
+        }
+    }
+
+}
+.meniu, .meniu ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: var(--rosu);
+    
+}
+
+.meniu li div, .meniu li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    line-height: var(--inaltime-meniu);
+    color: var(--crem);
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: all 1s linear;
+}
+.meniu li:hover>div{
+    background-color: var(--culoare-inchisa);
+    color: var(--albastru);
+    box-shadow: inset 0 0 20px rgb(255, 255, 255);
+
+}
+.meniu li:hover>ul{
+    display: block;
+    opacity: 1;
+    transform: scaleY(1);
+
+
+}
+
+/*submeniul*/
+.meniu ul{
+    display: none; 
+    opacity: 0;
+    transform: scaleY(0);
+
+}
+
+
+@keyframes animatie_submeniu {
+    100%{
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    
+}
+
+.meniu li:hover>a{
+    .arrow {
+        position: relative;
+        left: -10px; 
+        animation: moveArrow 1s forwards;
+      }
+}
+
+
+@keyframes moveArrow {
+  from {
+    left: -10px; 
+  }
+  to {
+    left: 0; 
+  }
+}

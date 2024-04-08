@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--Comentariu
+-->
+
+<html lang="ro">
+    
+
+
+    <head>
+        <%- include("../fragmente/head.ejs") %>
+        <meta name="keywords" content="jocuri, jocuri xbox, jocuri playstation, jocuri steam, jocuri pc, steam, keys, cheie, key, chei, transport instant, transport rapid, G4E, g4e"><!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
+        <meta name="description" content="Magazin chei jocuri pentru pc, playstation, xbox. Cheile sunt valabile pentru platforme diverse la preturi mici. Transport instant prin email."><!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
+        <title>G4E</title>
+    </head>
+    <body>
+        <%- include("../fragmente/header.ejs") %>
+        <main>
+            <div id="grid-pagina">
+
+                
+                <section id="welcome">
+                    <h2>Bun Venit!</h2>
+                    <p>Ip: <%- locals.ip %></p>
+                    
+                    <figure>
+                        <picture class="imagine1">
+                            <!-- Imaginea mică pentru ecran mobil -->
+                            <source media="(max-width: 700px)" srcset="imagine_mica.jpg">
+                            <!-- Imaginea medie pentru tabletă -->
+                            <source media="(max-width: 1200px)" srcset="imagine_medie.jpg">
+                            <!-- Imaginea mare pentru ecran mare -->
+                            <img src="./resurse/imagine/5e67a86db6f40796571744.jpg"  alt="imagine_prahitura" class="imagine1"/>
+                        </picture>
+                        <figcaption>Welcome!/ Bine ați venit!</figcaption>
+                    </figure>
+                    <figure>
+                        <video id="videoPlayer" controls preload="auto" width="80%" min-width="320px" max-width="800px" poster="./resurse/video/poze/poster.jpg">
+                            <source src="./resurse/video/video.mp4" type="video/mp4">
+                            <source src="./resurse/video/video.mp4" type="video/webm">
+                            <!-- Subtitrare în limba română -->
+                            <track src="./resurse/video/subtitrari/subtitles-ro.vtt" kind="subtitles" srclang="ro" label="Română" default>
+                            <!-- Subtitrare în limba engleză -->
+                            <track src="./resurse/video/subtitrari/subtitles-en.vtt" kind="subtitles" srclang="en" label="English">
+                    </figure>
+                    <figure>
+                        <picture>
+                            <!-- Imaginea mică pentru ecran mobil -->
+                            <source media="(max-width: 700px)" srcset="imagine_mica.jpg">
+                            <!-- Imaginea medie pentru tabletă -->
+                            <source media="(max-width: 1200px)" srcset="imagine_medie.jpg">
+                            <!-- Imaginea mare pentru ecran mare -->
+                            <img src="./resurse/imagine/CODMW3.png" alt="imagine_prahitura" style="width:auto;" title="COD Modern Warfare 3"/>
+                        </picture>
+                        <figcaption>COD Modern Warfare 3 it's out!</figcaption>
+                    </figure>
+                    <iframe name="COD" width="560" height="315" src="https://www.youtube.com/embed/mHDEDDrGYvo?si=S6nvjQm-QhOJisre" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="taburi-ifram">
+                        <a href="https://www.youtube.com/embed/mHDEDDrGYvo?si=S6nvjQm-QhOJisre" target="COD">Trailer COD MW3</a>
+                    </div>
+                    <figure>
+                        <picture>
+                            <!-- Imaginea mică pentru ecran mobil -->
+                            <source media="(max-width: 700px)" srcset="imagine_mica.jpg">
+                            <!-- Imaginea medie pentru tabletă -->
+                            <source media="(max-width: 1200px)" srcset="imagine_medie.jpg">
+                            <!-- Imaginea mare pentru ecran mare -->
+                            <img src="./resurse/imagine/GTA6.jpg" alt="imagine_prahitura" style="width:auto;" title="COD Modern Warfare 3"/>
+                        </picture>
+                        <figcaption>GTA VI it's out!</figcaption>
+                    </figure>
+                    <div class="container-iframe">
+
+                        <div class="taburi-iframe">
+                            <a href="https://www.youtube.com/embed/QdBZY2fkU-0?si=jV5N1_C49OOpjztI" target="GTA6"><b>Trailer 1</b></a>
+                            <a href="https://www.youtube.com/embed/Ix_wyFmuLUs?si=KzDlw8KalZfJbzEj" target="GTA6"><b>Trailer 2</b></a>
+                           </div> 
+                           <iframe name="GTA6" width="560" height="315" src="https://www.youtube.com/embed/QdBZY2fkU-0?si=jV5N1_C49OOpjztI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                   
+                    <p class = "intro"><b>Games that just came out!</b></p>
+                </div>
+                </section>
+
+                <section id="promotii">
+                    <h2><b>Promotii</b></h2>
+                    <p><span>Reduceri de pana la <s>60%</s> <ins>80%</ins>!</span></p>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <mrow>
+                        <mi style=" color: var(--rosu);">PretRedus</mi>
+                        <mo>=</mo>
+                        <mfrac>
+                            <mrow>
+                            <mn><=20</mn>
+                            </mrow>
+                            <mn>100</mn>
+                        </mfrac>
+                        <mo>&#x00D7;</mo>
+                        <mi style=" color: var(--albastru);">PretInitial</mi>
+                        </mrow>
+                    </math>
+                    <section>
+                        <h3>
+                            <b>Weekend-ul jocurilor!</b>
+                        </h3>
+                        <p><span class="info_oferte"></p>
+                    </section>
+                </section>
+                <section id="orar">
+                    <h2>Oferte Jocuri</h2>
+                    <div class="table-container">
+                        <table id="tab-orar">
+                            <thead>
+                                <tr>
+                                    <th>Produs</th>
+                                    <th>Nume</th>
+                                    <th>Preț</th>
+                                    <th>+</th>
+                                    <th>Produs</th>
+                                    <th>Nume</th>
+                                    <th>Preț</th>
+                                    <th>=</th>
+                                    <div class="text-of">
+                                        <th class = "text-oferta">OFERTA FINALA!</th>
+                                    </div>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><picture>
+                                        <!-- Imaginea mică pentru ecran mobil -->
+                                        <source media="(max-width: 700px)" srcset="./resurse/imagine/HELLDIVERS2game.png">
+                                        <!-- Imaginea medie pentru tabletă -->
+                                        <source media="(max-width: 1200px)" srcset="./resurse/imagine/HELLDIVERS2game.png">
+                                        <!-- Imaginea mare pentru ecran mare -->
+                                        <img src="./resurse/imagine/oferta_1.avif" alt="imagine_oferta1" style="height: 200px; width:150px; " title="imagine_oferta1"/>
+                                    </picture></td>
+                                    <td>HELLDIVERS 2 TR-117 Alpha Commander (PC) - Steam Key - GLOBAL</td>
+                                    <td style="white-space: nowrap; max-width: 200px;">€ 34.43(<s>€ 39.99</s>)</td>
+                                    <td>+</td>
+                                    <td><picture>
+                                        <!-- Imaginea mică pentru ecran mobil -->
+                                        <source media="(max-width: 700px)" srcset="./resurse/imagine/oferta_dlc1.avif">
+                                        <!-- Imaginea medie pentru tabletă -->
+                                        <source media="(max-width: 1200px)" srcset="./resurse/imagine/oferta_dlc1.avif">
+                                        <!-- Imaginea mare pentru ecran mare -->
+                                        <img src="./resurse/imagine/oferta_dlc1.avif" alt="imagine_oferta1" style="height: 200px; width:150px; " title="imagine_oferta1"/>
+                                    </picture></td>
+                                    <td>HELLDIVERS 2 TR-117 Alpha Commander (PC) - Steam Key - GLOBAL</td>
+                                    <td style="white-space: nowrap; max-width: 200px;">€ 3.06   (<s>€ 4.94</s>)</td>
+                                    <td>=</td>
+                                    <td>€ 37.49 <br> <em>Ofertă specială pentru weekend!</em></td>
+                                </tr>
+                                <tr>
+                                    <td><picture>
+                                        <!-- Imaginea mică pentru ecran mobil -->
+                                        <source media="(max-width: 700px)" srcset="./resurse/imagine/HELLDIVERS2game.png">
+                                        <!-- Imaginea medie pentru tabletă -->
+                                        <source media="(max-width: 1200px)" srcset="./resurse/imagine/HELLDIVERS2game.png">
+                                        <!-- Imaginea mare pentru ecran mare -->
+                                        <img src="./resurse/imagine/oferta_1.avif" alt="imagine_oferta1" style="height: 200px; width:150px; " title="imagine_oferta1"/>
+                                    </picture></td>
+                                    <td>HELLDIVERS 2 TR-117 Alpha Commander (PC) - Steam Key - GLOBAL</td>
+                                    <td style="white-space: nowrap; max-width: 200px;">€ 34.43(<s>€ 39.99</s>)</td>
+                                    <td>+</td>
+                                    <td><picture>
+                                        <!-- Imaginea mică pentru ecran mobil -->
+                                        <source media="(max-width: 700px)" srcset="./resurse/imagine/oferta_dlc2.avif">
+                                        <!-- Imaginea medie pentru tabletă -->
+                                        <source media="(max-width: 1200px)" srcset="./resurse/imagine/oferta_dlc2.avif">
+                                        <!-- Imaginea mare pentru ecran mare -->
+                                        <img src="./resurse/imagine/oferta_dlc2.avif" alt="imagine_oferta1" style="height: 200px; width:150px; " title="imagine_oferta1"/>
+                                    </picture></td>
+                                    <td>HELLDIVERS Dive Harder Edition (PC) - Steam Key - GLOBAL</td>
+                                    <td style="white-space: nowrap; max-width: 200px;">€ 4.13   (<s>€ 19.99</s>)</td>
+                                    <td>=</td>
+                                    <td>€ 38.56 <br> <em>Doar pentru astăzi!</em></td>
+                                </tr>
+                                <tr>
+                                    <td><picture>
+                                        <!-- Imaginea mică pentru ecran mobil -->
+                                        <source media="(max-width: 700px)" srcset="./resurse/imagine/HELLDIVERS2game.png">
+                                        <!-- Imaginea medie pentru tabletă -->
+                                        <source media="(max-width: 1200px)" srcset="./resurse/imagine/HELLDIVERS2game.png">
+                                        <!-- Imaginea mare pentru ecran mare -->
+                                        <img src="./resurse/imagine/oferta_1.avif" alt="imagine_oferta1" style="height: 200px; width:150px; " title="imagine_oferta1"/>
+                                    </picture></td>
+                                    <td>HELLDIVERS 2 TR-117 Alpha Commander (PC) - Steam Key - GLOBAL</td>
+                                    <td style="white-space: nowrap; max-width: 200px;">€ 34.43(<s>€ 39.99</s>)</td>
+                                    <td>+</td>
+                                    <td><picture>
+                                        <!-- Imaginea mică pentru ecran mobil -->
+                                        <source media="(max-width: 700px)" srcset="./resurse/imagine/oferta_dlc3.avif">
+                                        <!-- Imaginea medie pentru tabletă -->
+                                        <source media="(max-width: 1200px)" srcset="./resurse/imagine/oferta_dlc3.avif">
+                                        <!-- Imaginea mare pentru ecran mare -->
+                                        <img src="./resurse/imagine/oferta_dlc3.avif" alt="imagine_oferta1" style="height: 200px; width:150px; " title="imagine_oferta1"/>
+                                    </picture></td>
+                                    <td>Deep Rock Galactic (PC) - Steam Key - GLOBAL</td>
+                                    <td style="white-space: nowrap; max-width: 200px;">€ 11.33   (<s>€ 22.99</s>)</td>
+                                    <td>=</td>
+                                    <td>€ 45.76 <br> <em>Ofertă specială pentru weekend!</em></td>
+                                </tr>
+                                <tr>
+                                
+                                <td><picture>
+                                    <!-- Imaginea mică pentru ecran mobil -->
+                                    <source media="(max-width: 700px)" srcset="./resurse/imagine/oferta_2.avif">
+                                    <!-- Imaginea medie pentru tabletă -->
+                                    <source media="(max-width: 1200px)" srcset="./resurse/imagine/oferta_2.avif">
+                                    <!-- Imaginea mare pentru ecran mare -->
+                                    <img src="./resurse/imagine/oferta_2.avif" alt="imagine_oferta1" style="height: 200px; width:150px; " title="imagine_oferta1"/>
+                                </picture></td>
+                                <td colspan="3">Battlefield 2042 (PC) - Steam Key - GLOBAL</td>
+                                <td style="white-space: nowrap; max-width: 200px;" colspan="3">€ 14.99(<s>€ 59.99</s>)</td>
+                                <td>=</td>
+                                <td>€ 49.42 <br> <em>Ofertă specială pentru weekend!</em></td>
+                            </tr>
+                                <!-- Poți continua să adaugi rânduri pentru mai multe oferte -->
+                            </tbody>
+                            <tfoot></tfoot>
+                            <caption style="caption-side: bottom; color: var(--port-rosu);">De neratat!</caption>
+                        </table>
+                    </div>
+                </section>
+                <section id="fig1">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente magnam provident dolore ratione minus. Obcaecati sequi repellendus aliquid ipsam qui necessitatibus corrupti quae sunt. Exercitationem nulla illo molestias vero nihil.</p>
+                </section>
+                <section id="fig2">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, sequi.</p>
+                </section>
+                <section id="fig3">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo numquam distinctio iure ad voluptate, nam esse, harum reiciendis totam quos, voluptatum voluptates. Sit nulla qui rem dicta voluptatibus vero esse!</p>
+                </section>
+                <section id="produse">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti eaque tenetur cupiditate et rem quo dolor, eius non quia quas neque aliquid molestias quae molestiae voluptatibus nulla dolorem cumque iure!</p>
+                </section>
+                <section id="fig8">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem quasi voluptatem qui quis commodi? Ab fugit sed error, nulla accusantium minima veniam eligendi labore nihil eaque adipisci harum amet repellendus!</p>
+                </section>
+            </div>
+        </main>
+        
+        <%- include("../fragmente/footer.ejs") %>
+
+    </body>
+</html>

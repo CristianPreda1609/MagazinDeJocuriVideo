@@ -1,0 +1,27 @@
+DROP TYPE IF EXISTS categorie_p;
+DROP TYPE IF EXISTS platforma;
+DROP TYPE IF EXISTS nr_players;
+
+CREATE TYPE categorie_p AS ENUM( 'curse', 'strategie', 'mmo');
+CREATE TYPE platforma AS ENUM('steam', 'xbox', 'playstation');
+CREATE TYPE nrp AS ENUM('single','multi');
+
+
+CREATE TABLE IF NOT EXISTS jocuri (
+   id serial PRIMARY KEY,
+   nume VARCHAR(50) UNIQUE NOT NULL,
+   descriere TEXT,
+   pret NUMERIC(8,2) NOT NULL,
+   tip_produs platforma DEFAULT 'steam',
+   nr_players nrp DEFAULT 'single',
+   ore INT NOT NULL CHECK (ore>=0),
+   categorie categorie_p DEFAULT 'strategie',
+   specificatii_min VARCHAR [], --pot sa nu fie specificare deci nu punem NOT NULL
+   specificatii_max VARCHAR [], --pot sa nu fie specificare deci nu punem NOT NULL
+   refundable BOOLEAN NOT NULL DEFAULT FALSE,
+   windows BOOLEAN NOT NULL DEFAULT FALSE,
+   linux BOOLEAN NOT NULL DEFAULT FALSE,
+   macos BOOLEAN NOT NULL DEFAULT FALSE,
+   imagine VARCHAR(300),
+   data_adaugare TIMESTAMP DEFAULT current_timestamp
+);

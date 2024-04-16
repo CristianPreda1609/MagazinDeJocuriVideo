@@ -1,0 +1,45 @@
+.bar1 {
+  animation: bar-animation1 0.3s ease 300ms;
+}
+
+@keyframes bar-animation1 {
+  0% {
+    transform: translateY(0) scaleX(1);
+  }
+  50% {
+    transform: translateY(-6px) scaleX(1.3);
+  }
+  100% {
+    transform: translateY(-10px) scaleX(1);
+  }
+}
+.bar2 {
+  animation: bar-animation2 0.3s ease 600ms;
+}
+
+@keyframes bar-animation2 {
+  0% {
+    transform: translateY(0) scaleX(1);
+  }
+  50% {
+    transform: translateY(-6px) scaleX(1.3);
+  }
+  100% {
+    transform: translateY(-10px) scaleX(1);
+  }
+}
+.bar3 {
+  animation: bar-animation3 0.3s ease 900ms;
+}
+
+@keyframes bar-animation3 {
+  0% {
+    transform: translateY(0) scaleX(1);
+  }
+  50% {
+    transform: translateY(-6px) scaleX(1.3);
+  }
+  100% {
+    transform: translateY(-10px) scaleX(1);
+  }
+}

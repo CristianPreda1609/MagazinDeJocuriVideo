@@ -2,7 +2,7 @@ WEBVTT
 
 STYLE
 ::cue {
-    background: linear-gradient(to bottom, #fb9804, #F53E00); /* Schimbați culorile gradientului la cele dorite */
+    background: linear-gradient(to bottom, #fb9804, #F53E00); 
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

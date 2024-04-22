@@ -1,28 +1,21 @@
-@mixin animate-bar($index, $delay) {
-  $duration: 0.3s;
-  $easing: ease;
+$animation-duration: 0.3s;
+$animation-delay-increment: 300ms;
+$animation-delay-base: 300ms;
 
-  .bar#{$index} {
-    animation: bar-animation#{$index} $duration $easing $delay;
+@keyframes bar-animation {
+  0% {
+    transform: translateY(0) scaleX(1);
   }
-
-  @keyframes bar-animation#{$index} {
-    0% {
-      transform: translateY(0) scaleX(1);
-    }
-    50% {
-      transform: translateY(-6px) scaleX(1.3);
-    }
-    100% {
-      transform: translateY(-10px) scaleX(1);
-    }
+  50% {
+    transform: translateY(-6px) scaleX(1.3);
+  }
+  100% {
+    transform: translateY(-10px) scaleX(1);
   }
 }
 
-$menu-bars: 3;
-$delay-step: 300ms;
-
-@for $i from 1 through $menu-bars {
-  $delay: $i * $delay-step;
-  @include animate-bar($i, $delay);
+@for $i from 1 through 3 {
+  .bar#{$i} {
+    animation: bar-animation $animation-duration ease ($animation-delay-base + $animation-delay-increment * ($i - 1));
+  }
 }

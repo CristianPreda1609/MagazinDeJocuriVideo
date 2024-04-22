@@ -1,0 +1,73 @@
+@import "../css/var.css";
+.zigzag-grid {
+    display: grid;
+    grid-template-columns: 1;
+    grid-gap: 10px; 
+  }
+  
+  .imag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  $total-pics: 10;
+  @for $i from 1 through $total-pics {
+    .imag:nth-child(#{$total-pics}n+#{$i}) {
+      grid-column-start: #{$i};
+      grid-row: #{$i};
+    }
+  }
+  
+  #grid-galerie figure {
+    position: relative;
+    width: 100%; 
+    height: auto;
+    margin: 0; 
+  }
+  
+  #grid-galerie img {
+    width: 100%;
+    height: auto;
+    filter: brightness(50%);
+  }
+  
+  #grid-galerie>* {
+    padding: 0; 
+  }
+  
+  
+  #grid-galerie figure:hover img {
+    filter: brightness(100%);
+    transition: 1.2s;
+  }
+  
+  #grid-galerie figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    transition: background-color 1.2s ease, color 1.2s ease;
+  }
+  
+  #grid-galerie figure:hover figcaption {
+    background-color: rgba(255, 255, 255, 0.7); 
+    color: black; 
+  }
+  
+  
+  @media screen and (max-width: 1200px) {
+    #grid-galerie {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  
+  @media screen and (max-width: 900px) {
+    #grid-galerie {
+      grid-template-columns: 1fr;
+    }
+  }

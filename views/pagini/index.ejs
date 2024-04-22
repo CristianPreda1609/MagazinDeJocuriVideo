@@ -25,10 +25,10 @@
 		
                     </div>
                     <div id="text">
-                        Un text
+                        Bine ați venit!
                     </div>
                     <div id="text-reflectat">
-                        Un text
+                        Bine ați venit!
                     </div>
                     <figure>
                         <picture class="imagine1">
@@ -77,7 +77,7 @@
                         </picture>
                         <figcaption>GTA VI it's out!</figcaption>
                     </figure>
-                    <div class="container-iframe">
+                <div class="container-iframe">
 
                         <div class="taburi-iframe">
                             <a href="https://www.youtube.com/embed/QdBZY2fkU-0?si=jV5N1_C49OOpjztI" target="GTA6"><b>Trailer 1</b></a>
@@ -232,24 +232,7 @@
                     </div>
                 </section>
                 <section id="fig1">
-                    <h2>Galerie</h2>
-                        <div id="grid-galerie">
-                            <%
-                            var vLuni=["ianuarie","februarie","martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie"];
-                            var d=new Date();
-                            var lunaCurenta=vLuni[d.getMonth()];
-                            for(let imag of locals.imagini) {
-                                if( imag?.luni?.includes(lunaCurenta) ){ %>
-                            <figure>
-                            <picture>
-                                <source srcset="<%= imag.fisier %>" media="(max-width:1200px)"/>
-                                <img src="<%= imag.fisier %>" alt="briose"/>
-                            </picture>
-                            <figcaption><%= imag.descriere %></figcaption>
-                            </figure>
-                                <% } %>
-                            <%}%>
-                        </div>
+                    
                 </section>
                 <section id="fig2">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, sequi.</p>
@@ -261,7 +244,27 @@
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti eaque tenetur cupiditate et rem quo dolor, eius non quia quas neque aliquid molestias quae molestiae voluptatibus nulla dolorem cumque iure!</p>
                 </section>
                 <section id="fig8">
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem quasi voluptatem qui quis commodi? Ab fugit sed error, nulla accusantium minima veniam eligendi labore nihil eaque adipisci harum amet repellendus!</p>
+                    <h2>Galerie</h2>
+                    <div id="grid-galerie" class="zigzag-grid">
+                        <% var vLuni=["ianuarie","februarie","martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie"]; %>
+                        <% var d=new Date(); %>
+                        <% var lunaCurenta=vLuni[d.getMonth()]; %>
+
+                        <% for(let imag of locals.imagini) { %>
+                            <% if (imag?.luni?.includes("aprilie")) { %>
+                                <div class="imag">
+                                    <figure>
+                                        <picture>
+                                            <source srcset="<%= imag.fisier %>" media="(max-width:1200px)"/>
+                                            <img src="<%= imag.fisier %>" alt="briose"/>
+                                        </picture>
+                                        <figcaption><%= imag.descriere %></figcaption>
+                                    </figure>
+                                </div>
+                            <% } %>
+                        <% } %>
+                    </div>
+                    
                 </section>
             </div>
         </main>

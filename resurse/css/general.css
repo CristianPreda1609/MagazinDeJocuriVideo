@@ -15,110 +15,87 @@ body {
 }
 
 #link-top{
-    position:fixed;
-    bottom:0.3em;
-    opacity:0.3;
-    left:0.3em;
-    width:3rem;
-    box-sizing: border-box;
-    height:3rem;
-    line-height:3rem;
-    text-align:center;
-    border:5px solid #F57F27;
-      border-top-color:transparent;
-      border-bottom-color: transparent;
-    border-radius:50%;
-    background: transparent;/*#F5C379;*/
+  position:fixed;
+  bottom:0.3em;
+  opacity:0.3;
+  left:0.3em;
+  width:3rem;
+  box-sizing: border-box;
+  height:3rem;
+  line-height:3rem;
+  text-align:center;
+  border:5px solid #F57F27;
+    border-top-color:transparent;
+    border-bottom-color: transparent;
+  border-radius:50%;
+  background: transparent;/*#F5C379;*/
 
-  }
-
-
-  #link-top:hover{
-    opacity:1;
+}
 
 
+#link-top:hover{
+  opacity:1;
+}
+#triunghi{
+  height:0px;
+  width:0;
+  display:inline-block;
+  border-bottom:0.8rem solid #F5A127;
+  border-left:0.6rem solid transparent;
+  border-right:0.6rem solid transparent;
+  vertical-align: center;
+  transform: translatey(30%);
+  transform: scale(1,1);
+  transition:transform 0.3s linear, border-bottom 0.3s linear;
+}
+#link-top:hover>#triunghi{
+  transform: translatey(-80%);
+  border-bottom:0.8rem solid #F53E00;
 
-  }
-  #triunghi{
-    height:0px;
-    width:0;
-    display:inline-block;
-    border-bottom:0.8rem solid #F5A127;
-    border-left:0.6rem solid transparent;
-    border-right:0.6rem solid transparent;
-    vertical-align: center;
-    transform: translatey(30%);
-    transform: scale(1,1);
-    transition:transform 0.3s linear, border-bottom 0.3s linear;
-  }
-  #link-top:hover>#triunghi{
-    transform: translatey(-80%);
-    border-bottom:0.8rem solid #F53E00;
+}
 
-  }
+#tab-orar th,#tab-orar td{
+  border: 1px solid black;
+  padding: 8px;
 
-  #tab-orar th,#tab-orar td{
-    border: 1px solid black;
-    padding: 8px;
-
-  }
-  #tab-orar {
-    font-size: 12px; 
-    margin-bottom: 20px;
-    border-spacing: 5px; 
-    border: 5px solid black;
-    border-collapse: collapse;
-  }
- /* #tab-orar th:nth-child(2n+1){
-    background-color: #0CD0FF;
-  }
-  #tab-orar th:nth-child(2n){
-    background-color: #CBFF2D;
-  }*/
-  .container-iframe {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-  }
-  .container-iframe iframe{
-    width: 100%;
-  }
+}
+#tab-orar {
+  font-size: 12px; 
+  margin-bottom: 20px;
+  border-spacing: 5px; 
+  border: 5px solid black;
+  border-collapse: collapse;
+}
+.container-iframe {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.container-iframe iframe{
+  width: 100%;
+}
 .taburi-iframe{
   display:flex;
   flex-direction: row;
   justify-content: center;
 
 }
-  .taburi-iframe>a{
-    display: block;
-    border: 1px solid var(--rosu);
-    background-color: var(--crem);
-    box-shadow: 0 0 10px rgba(224,81,47, 0.7);
-    margin: 0 10px; 
-   padding: 0.6cm;
-   transition: background-color 2s ease; 
-  }
-  .taburi-iframe>a:last-child{
-    margin-bottom: 0;
-  }
-  .taburi-iframe>a:hover{
+.taburi-iframe>a{
+  display: block;
+  border: 1px solid var(--rosu);
+  background-color: var(--crem);
+  box-shadow: 0 0 10px rgba(224,81,47, 0.7);
+  margin: 0 10px; 
+  padding: 0.6cm;
+  transition: background-color 2s ease; 
+}
+.taburi-iframe>a:last-child{
+  margin-bottom: 0;
+}
+.taburi-iframe>a:hover{
 
-    background-color: var(--rosu);
-  }
-
-  /* Text tabel(orar)*/
-  /*@keyframes miscare-tabel{
-    0% { transform: translateX(0); }
-    10%, 90% { transform: translateX(-10px); }
-    20%, 80% { transform: translateX(10px); }
-    30%, 50%, 70% { transform: translateX(-10px); }
-    40%, 60% { transform: translateX(10px); }
-    100% { transform: translateX(0); }
-  }
-  .text-oferta {
-    animation: miscare-tabel 2s infinite;
-}*/
-
+  background-color: var(--rosu);
+}
 
 #tab-orar tr:nth-child(odd) td {
   border-bottom-color: var(--rosu);
@@ -172,7 +149,8 @@ body {
 
 .arrow {
   position: relative;
-  left: -10px; 
+  left: -10px;
+  opacity: 0; 
 }
 
 video {
@@ -192,7 +170,7 @@ track {
 }
 
 
-a[href^="http"]:not(.taburi-iframe a) {
+#link-stilizat {
   background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(254,156,0,0.5729751373205532) 100%);
   background-size: 0% 0%; 
   background-position: center;
@@ -201,13 +179,13 @@ a[href^="http"]:not(.taburi-iframe a) {
   border-radius: 50%;
 
 }
-a[href^="http"]:not(.taburi-iframe a):hover {
+#link-stilizat:hover {
   background-size: 100% 100%; 
   background-position: center; 
   border-radius: 100%; 
 }
 
-a[href^="http"]:not(.taburi-iframe a):active {
+#link-stilizat:active {
   transition: 0;
   border: 5px solid black ;
   border-radius: 0%;
@@ -281,7 +259,7 @@ a[href^="http"]:not(.taburi-iframe a):active {
 
 
 #text, #text-reflectat {
-  width: 160px;
+  width: 300px;
   font-size: 50px;
   line-height: 50px;
   font-weight: bold;
@@ -293,7 +271,7 @@ a[href^="http"]:not(.taburi-iframe a):active {
 }
 
 #text-reflectat {
-  width: 160px;
+  width: 300px;
   top: 0;
   transform-origin: 0 0;
   transform: rotateX(180deg) skew(-45deg) scaleY(0.5) translate(10px, -40px);
@@ -303,8 +281,90 @@ a[href^="http"]:not(.taburi-iframe a):active {
 }
 
 #text:hover + #text-reflectat {
-  width: 160px;
+  width: 300px;
   transform-origin: 0 0;
   transform: rotateX(180deg) skew(-45deg) scaleY(1) translate(10px, -40px);
   opacity: 0.7; 
 }
+/* Galerie */
+/*
+.zigzag-grid {
+  display: grid;
+  grid-template-columns: 1;
+  grid-gap: 10px; 
+}
+
+.imag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imag:nth-child(odd) {
+  grid-column-start: 1;
+  grid-row: 1;
+}
+
+.imag:nth-child(even) {
+  grid-column-start: 2;
+  grid-row: 2;
+}
+.imag:nth-child(3n) {
+  grid-column-start: 3;
+  grid-row: 3;
+}
+
+#grid-galerie figure {
+  position: relative;
+  width: 100%; 
+  height: auto;
+  margin: 0; 
+}
+
+#grid-galerie img {
+  width: 100%;
+  height: auto;
+  filter: brightness(50%);
+}
+
+#grid-galerie>* {
+  padding: 0; 
+}
+
+
+#grid-galerie figure:hover img {
+  filter: brightness(100%);
+  transition: 1.2s;
+}
+
+#grid-galerie figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  transition: background-color 1.2s ease, color 1.2s ease;
+}
+
+#grid-galerie figure:hover figcaption {
+  background-color: rgba(255, 255, 255, 0.7); 
+  color: black; 
+}
+
+
+@media screen and (max-width: 1200px) {
+  #grid-galerie {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@media screen and (max-width: 900px) {
+  #grid-galerie {
+    grid-template-columns: 1fr;
+  }
+}*/
+
+/*Galerie*/

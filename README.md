@@ -8,7 +8,6 @@
 ## Structura Site-ului
 1. **Pagini Principale:**
    - Pagina Acasă
-   - Jocuri Video
    - Platformă
      - Steam
      - Xbox Live

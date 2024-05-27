@@ -1,9 +1,14 @@
 <header>
-            
+  
     <section id="top"></section>
     <h1>        
         Games for Everyone
     </h1>
+    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+        <button type="button" class="btn btn-secondary" id="schimba_tema">tema intunecata</button>
+        <button type="button" class="btn btn-secondary" id="schimba_tema2">Schimba tema</button>
+    </div>
+    
     </header>
     <nav>
     
@@ -28,24 +33,21 @@
             
             
             </li>
-            <li><div>Jocuri Video</div>
-                <ul class="subemniu">
-                    <li><div>Platforma</div>
-                        <ul>
-                            <li><a href="produse#steam"><span class="arrow">→</span> Steam</a></li>
-                            <li><a href="produse.html#xbox"><span class="arrow">→</span> Xbox Live</a></li>
-                            <li><a href="produse.html#pspn"><span class="arrow">→</span> Playstation</a></li>
-                        </ul>
-                    </li>
-                    <li><div>Gen</div>
-                        <ul>
-                            <li><a href="produse.html#curse"><span class="arrow">→</span> Curse</a></li>
-                            <li><a href="produse.html#strategie"><span class="arrow">→</span> Strategie</a></li>
-                            <li><a href="produse.html#mmo"><span class="arrow">→</span> MMO</a></li>
-                        </ul>
-                    </li>
+            <li><div><a href="produse.ejs">Platforma</a></div>
+                <ul>
+                    <li><a href="produse#steam"><span class="arrow">→</span> Steam</a></li>
+                    <li><a href="produse.html#xbox"><span class="arrow">→</span> Xbox Live</a></li>
+                    <li><a href="produse.html#pspn"><span class="arrow">→</span> Playstation</a></li>
                 </ul>
-            </li> 
+            </li>
+            <li><div><a href="produse.ejs">Gen</a></div>
+                <ul>
+                    <li><a href="produse.html#curse"><span class="arrow">→</span> Curse</a></li>
+                    <li><a href="produse.html#strategie"><span class="arrow">→</span> Strategie</a></li>
+                    <li><a href="produse.html#mmo"><span class="arrow">→</span> MMO</a></li>
+                </ul>
+            </li>
+
             <li> <div><a href="produse.ejs">Software</a></div>
                 <ul>
                     
@@ -73,6 +75,9 @@
                     <li><a href="/produse?tip=html#di"><span class="arrow">→</span> Design & Illustration</a></li>
                 </ul>
             </li> 
-            <li><a href="#footer"> Contact</a></li>
+             <li><a href="#footer"> Contact</a>
+            </li>
+             <%- include("../fragmente/submeniu-administrare") %> <%-
+             include("../fragmente/submeniu-utilizator-logat") %>
         </ul>
     </nav>

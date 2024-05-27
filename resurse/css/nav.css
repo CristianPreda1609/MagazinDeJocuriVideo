@@ -1,72 +1,98 @@
 nav {
-  height: 2.5em;
+  --inaltime-meniu:2.5em;
+  --latime-buton:300px;
+  height: var(--inaltime-meniu);
   background-color: var(--culoare-deschisa);
 }
-nav .meniu,
-nav .meniu ul {
+
+#hamburger, #ch-menu {
+  display: none;
+}
+
+#acasa-mediu {
+  display: none;
+}
+
+.meniu {
+  display: flex;
   list-style-type: none;
   padding: 0;
   margin: 0;
   background-color: var(--rosu);
+  /*submeniu*/
 }
-nav .meniu li {
+.meniu li {
   border: 1px solid var(--culoare-inchisa);
-  width: 300px;
-  height: 2.5em;
+  width: var(--latime-buton);
+  height: var(--inaltime-meniu);
   text-align: center;
   box-sizing: border-box;
 }
-nav .meniu li div,
-nav .meniu li a {
+.meniu li:hover > ul {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  animation: animatie_submeniu 4s linear forwards;
+  transform-origin: center top;
+}
+.meniu li div, .meniu li a {
   display: block;
   width: 100%;
   height: 100%;
   cursor: pointer;
-  line-height: 2.5em;
+  line-height: var(--inaltime-meniu);
   color: var(--crem);
   text-decoration: none;
   box-sizing: border-box;
   transition: all 1s linear;
 }
-nav .meniu li:hover > div {
+.meniu li div, .meniu li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  line-height: var(--inaltime-meniu);
+  color: var(--crem);
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: all 1s linear;
+}
+.meniu li:hover > div {
   background-color: var(--culoare-inchisa);
   color: var(--albastru);
   box-shadow: inset 0 0 20px rgb(255, 255, 255);
 }
-nav .meniu li:hover > ul {
+.meniu li:hover > ul {
   display: block;
   opacity: 1;
   transform: scaleY(1);
+  transition: transform 10s linear;
 }
-nav .meniu li:hover > a .arrow {
+.meniu li:hover > a .arrow {
   position: relative;
   left: -10px;
   animation: moveArrow 1s forwards;
 }
-nav .meniu ul {
+.meniu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: var(--rosu);
   display: none;
   opacity: 0;
   transform: scaleY(0);
 }
-nav .meniu ul li:hover > ul {
-  display: block;
-  position: absolute;
-  z-index: 100;
-  animation: animatie_submeniu 1s linear forwards;
-  transform-origin: center top;
+.meniu a .arrow {
+  opacity: 0;
 }
 
-@keyframes animatie_submeniu {
-  100% {
-    opacity: 1;
-    transform: scaleY(1);
-  }
-}
 @keyframes moveArrow {
   from {
-    left: -10px;
+    opacity: 0;
+    left: -100px;
   }
   to {
+    opacity: 1;
     left: 0;
   }
 }

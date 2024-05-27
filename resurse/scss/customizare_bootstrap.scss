@@ -1,6 +1,9 @@
 @use '../../node_modules/bootstrap/scss/bootstrap.scss' with (
     $primary: red,
-    $secondary: purple
+    $secondary: purple,
+    $border-radius: 8px,
+    $btn-border-width: 2px,
+    $font-size-base: 1rem
 );
 
 $background-color-theme1: #f0f0f0;
@@ -32,3 +35,31 @@ $container-max-width: 1200px;
 $button-padding: 0.5rem 1rem;
 $link-hover-color: darken(red, 10%); 
 $input-border-radius: 4px; 
+$btn-border-radius: 0.25rem; // Customize border radius
+$btn-border-width: 2px; // Customize border width
+$btn-primary-bg: #007bff; // Primary button background color
+$btn-secondary-bg: #6c757d; // Secondary button background color
+$btn-font-size-sm: 0.875rem; // Button font size for small screens
+// Definim variabila pentru dimensiunea fontului HTML
+$font-size-html: 16px;
+
+// Dimensiunea bulinei va fi 150% din dimensiunea fontului HTML
+$custom-range-thumb-size: calc(#{$font-size-html} * 1.5);
+
+// Culoarea bulinei
+$custom-range-thumb-bg: #007bff; // Albastru (poți schimba cu orice altă culoare)
+
+// Culoarea sliderului
+$custom-range-track-bg: #28a745; // Verde (poți schimba cu orice altă culoare)
+
+// Importăm variabilele Bootstrap și restul fișierelor necesare
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+// Suprascriem variabilele implicite
+$input-range-track-height: 0.5rem; // Înălțimea sliderului
+
+// Importăm stilurile Bootstrap după ce am setat variabilele noastre
+
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';

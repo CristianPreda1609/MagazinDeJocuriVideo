@@ -77,3 +77,12 @@ main{
     
     border:1px solid  var(--culoare-mov);
 }
+
+@media (max-width: 576px) {
+    .button-text {
+      display: none;/*fara text pe ecran mic*/
+    }
+    .btn i {
+        margin-right: 0; /*fara margine pe ecran mic*/
+      }
+  }

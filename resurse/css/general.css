@@ -13,6 +13,21 @@ body {
   --culoare-deschisa: #E0B302;
   --culoare-inchisa: #F53E00;
 }
+body.dark {
+  --portocaliu: black;
+  --rosu: magenta;
+  --verde: gray;
+  --albastru: black;
+  --port-rosu: gray;
+  --port-deschis: gray;
+  --port-galben: black;
+  --crem: gray;
+  --spatiere: 100px;
+  padding-left: var(--spatiere);
+  padding-right: var(--spatiere);
+  --culoare-deschisa: black;
+  --culoare-inchisa: #F53E00;
+}
 
 #link-top{
   position:fixed;
@@ -31,8 +46,6 @@ body {
   background: transparent;/*#F5C379;*/
 
 }
-
-
 #link-top:hover{
   opacity:1;
 }
@@ -75,7 +88,7 @@ body {
   width: 100%;
 }
 .taburi-iframe{
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: center;
 
@@ -88,6 +101,10 @@ body {
   margin: 0 10px; 
   padding: 0.6cm;
   transition: background-color 2s ease; 
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+  height: 20px;
+  border-bottom: hidden;
 }
 .taburi-iframe>a:last-child{
   margin-bottom: 0;
@@ -147,11 +164,7 @@ body {
   }
 }*/
 
-.arrow {
-  position: relative;
-  left: -10px;
-  opacity: 0; 
-}
+
 
 video {
   display: block;
@@ -286,85 +299,3 @@ track {
   transform: rotateX(180deg) skew(-45deg) scaleY(1) translate(10px, -40px);
   opacity: 0.7; 
 }
-/* Galerie */
-/*
-.zigzag-grid {
-  display: grid;
-  grid-template-columns: 1;
-  grid-gap: 10px; 
-}
-
-.imag {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.imag:nth-child(odd) {
-  grid-column-start: 1;
-  grid-row: 1;
-}
-
-.imag:nth-child(even) {
-  grid-column-start: 2;
-  grid-row: 2;
-}
-.imag:nth-child(3n) {
-  grid-column-start: 3;
-  grid-row: 3;
-}
-
-#grid-galerie figure {
-  position: relative;
-  width: 100%; 
-  height: auto;
-  margin: 0; 
-}
-
-#grid-galerie img {
-  width: 100%;
-  height: auto;
-  filter: brightness(50%);
-}
-
-#grid-galerie>* {
-  padding: 0; 
-}
-
-
-#grid-galerie figure:hover img {
-  filter: brightness(100%);
-  transition: 1.2s;
-}
-
-#grid-galerie figcaption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  text-align: center;
-  transition: background-color 1.2s ease, color 1.2s ease;
-}
-
-#grid-galerie figure:hover figcaption {
-  background-color: rgba(255, 255, 255, 0.7); 
-  color: black; 
-}
-
-
-@media screen and (max-width: 1200px) {
-  #grid-galerie {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-
-@media screen and (max-width: 900px) {
-  #grid-galerie {
-    grid-template-columns: 1fr;
-  }
-}*/
-
-/*Galerie*/

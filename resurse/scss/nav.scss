@@ -1,86 +1,102 @@
-$inaltime-meniu: 2.5em;
-$latime-buton: 300px;
-
 nav {
-  height: $inaltime-meniu;
+  --inaltime-meniu:2.5em;
+  --latime-buton:300px;
+  height: var(--inaltime-meniu);
   background-color: var(--culoare-deschisa);
+}
 
-  .meniu,
-  .meniu ul {
-    list-style-type: none;
+#hamburger, #ch-menu {
+  display: none;
+}
+
+#acasa-mediu {
+  display: none;
+}
+
+.meniu {
+  display: flex;
+  list-style-type: none;
     padding: 0;
     margin: 0;
     background-color: var(--rosu);
-  }
-
-  .meniu li {
+  li {
     border: 1px solid var(--culoare-inchisa);
-    width: $latime-buton;
-    height: $inaltime-meniu;
+    width: var(--latime-buton);
+    height: var(--inaltime-meniu);
     text-align: center;
     box-sizing: border-box;
-
-    div,
-    a {
+    &:hover > ul {
+      display: block;
+      position: absolute;
+      z-index: 100;
+      animation: animatie_submeniu 4s linear forwards;
+      transform-origin: center top;
+    }
+    div,  a {
       display: block;
       width: 100%;
       height: 100%;
       cursor: pointer;
-      line-height: $inaltime-meniu;
+      line-height: var(--inaltime-meniu);
       color: var(--crem);
       text-decoration: none;
       box-sizing: border-box;
       transition: all 1s linear;
     }
-
+    div,  a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      line-height: var(--inaltime-meniu);
+      color: var(--crem);
+      text-decoration: none;
+      box-sizing: border-box;
+      transition: all 1s linear;
+    }
     &:hover > div {
       background-color: var(--culoare-inchisa);
       color: var(--albastru);
       box-shadow: inset 0 0 20px rgb(255, 255, 255);
     }
-
     &:hover > ul {
       display: block;
       opacity: 1;
       transform: scaleY(1);
+      transition: transform 10s linear;
+     
     }
-
     &:hover > a .arrow {
       position: relative;
       left: -10px;
       animation: moveArrow 1s forwards;
     }
   }
-
-  .meniu ul {
+  /*submeniu*/
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: var(--rosu);
     display: none;
     opacity: 0;
     transform: scaleY(0);
-
-    li {
-      &:hover > ul {
-        display: block;
-        position: absolute;
-        z-index: 100;
-        animation: animatie_submeniu 1s linear forwards;
-        transform-origin: center top;
-      }
-    }
   }
-}
-
-@keyframes animatie_submeniu {
-  100% {
-    opacity: 1;
-    transform: scaleY(1);
+  
+  a .arrow{
+    opacity: 0;
   }
+  
 }
 
 @keyframes moveArrow {
   from {
-    left: -10px;
+    opacity: 0;
+    left: -100px;
   }
   to {
+    opacity: 1;
     left: 0;
   }
 }
+

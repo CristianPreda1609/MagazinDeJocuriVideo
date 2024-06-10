@@ -7,6 +7,8 @@
         <title>Cofetăria Dulcelind - home</title>
         <%- include("../fragmente/head") %>     
         <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
+
+
     </head>
     <body>
     <%- include("../fragmente/header") %>
@@ -14,23 +16,175 @@
     <main>
         <section>
             <h2>Pagină produs</h2>
-                <article id="art-produs">
-                    <h3><span class="nume"><%- locals.prod.nume %></span></h3>
-                    <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
-                    <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
-                    <p>Ingrediente: <span class="ingrediente"><%- locals.prod.ingrediente %> </span></p>
-                    <p>Calorii: <span class="calorii"><%- locals.prod.calorii %> </span></p>
-                    <p>Gramaj: <span class="gramaj"><%- locals.prod.gramaj %> </span></p>
-                    <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
-                    <p>Pentru diabetici: <span class="pt_diabetici"><%- locals.prod.pt_diabetici %> </span></p>
-                    <p>Data adăugare: <span class="categorie"><%- locals.prod.data_adaugare %> </span></p>
-                    <figure class="imag-produs">
-                        <img  src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
-                    </figure>    
-                </article>
-            
+            <article id="art-produs">
+                <h3><span class="nume"><%- locals.prod.nume %></span></h3>
+                <div class="accordion" id="productAccordion">
+                    <div class="card">
+                        <figure class="imag-produs">
+                            <img src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
+                        </figure>
+                        <div class="card-header" id="headingPrice">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapsePrice" aria-expanded="true" aria-controls="collapsePrice">
+                                    Preț
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapsePrice" class="collapse" aria-labelledby="headingPrice" data-parent="#productAccordion">
+                            <div class="card-body">
+                                <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingDescription">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription">
+                                    Descriere
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseDescription" class="collapse" aria-labelledby="headingDescription" data-parent="#productAccordion">
+                            <div class="card-body">
+                                <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingPlatform">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsePlatform" aria-expanded="false" aria-controls="collapsePlatform">
+                                    Platformă
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapsePlatform" class="collapse" aria-labelledby="headingPlatform" data-parent="#productAccordion">
+                            <div class="card-body">
+                                <p>Platformă: <span class="tip_produs"><%- locals.prod.tip_produs %> </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingPlayers">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsePlayers" aria-expanded="false" aria-controls="collapsePlayers">
+                                    Nr. Jucători
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapsePlayers" class="collapse" aria-labelledby="headingPlayers" data-parent="#productAccordion">
+                            <div class="card-body">
+                                <p>Nr. Jucători: <span class="nr_players"><%- locals.prod.nr_players %> </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingHours">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseHours" aria-expanded="false" aria-controls="collapseHours">
+                                    Ore
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseHours" class="collapse" aria-labelledby="headingHours" data-parent="#productAccordion">
+                            <div class="card-body">
+                                <p>Ore: <span class="ore"><%- locals.prod.ore %> </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingCategory">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
+                                    Categorie
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseCategory" class="collapse" aria-labelledby="headingCategory" data-parent="#productAccordion">
+                            <div class="card-body">
+                                <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingSpecsMin">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSpecsMin" aria-expanded="false" aria-controls="collapseSpecsMin">
+                                    Specificații Minime
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseSpecsMin" class="collapse" aria-labelledby="headingSpecsMin" data-parent="#productAccordion">
+                            <div class="card-body">
+                                <p>Specificații Minime: <span class="specificatii_min"><%- locals.prod.specificatii_min.join(', ') %> </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingSpecsMax">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSpecsMax" aria-expanded="false" aria-controls="collapseSpecsMax">
+                                    Specificații Maxime
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseSpecsMax" class="collapse" aria-labelledby="headingSpecsMax" data-parent="#productAccordion">
+                            <div class="card-body">
+                                <p>Specificații Maxime: <span class="specificatii_max"><%- locals.prod.specificatii_max.join(', ') %> </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingRefundable">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseRefundable" aria-expanded="false" aria-controls="collapseRefundable">
+                                    Refundabil
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseRefundable" class="collapse" aria-labelledby="headingRefundable" data-parent="#productAccordion">
+                            <div class="card-body">
+                                <p>Refundabil: <span class="refundable"><%- locals.prod.refundable ? 'Da' : 'Nu' %> </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingOS">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOS" aria-expanded="false" aria-controls="collapseOS">
+                                    Sisteme de Operare
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseOS" class="collapse" aria-labelledby="headingOS" data-parent="#productAccordion">
+                            <div class="card-body">
+                                <p>Windows: <span class="windows"><%- locals.prod.windows ? 'Da' : 'Nu' %> </span></p>
+                                <p>Linux: <span class="linux"><%- locals.prod.linux ? 'Da' : 'Nu' %> </span></p>
+                                <p>MacOS: <span class="macos"><%- locals.prod.macos ? 'Da' : 'Nu' %> </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingAddedDate">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAddedDate" aria-expanded="false" aria-controls="collapseAddedDate">
+                                    Data adăugare
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseAddedDate" class="collapse" aria-labelledby="headingAddedDate" data-parent="#productAccordion">
+                            <div class="card-body">
+                                <p>Data adăugare: <span class="data_adaugare"><%- locals.prod.data_adaugare %> </span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </article>
         </section>
     </main>
+    
+    
 
     <%- include("../fragmente/footer") %>
     </body>

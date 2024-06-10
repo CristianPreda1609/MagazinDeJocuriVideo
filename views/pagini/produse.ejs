@@ -7,7 +7,7 @@
         <title>Cofetăria Dulcelind - home</title>
         <%- include("../fragmente/head") %>     
         <script type="text/javascript" src=/resurse/js/produse.js></script>
-       
+        <script type="text/javascript" src=/resurse/js/produse-cos.js></script>
 
     </head>
     <body>
@@ -117,15 +117,19 @@
         <section id="produse">
             <h2>Produse</h2>
             <div class="grid-produse">
+                
                 <% for( let prod of locals.produse) { %>
                     <article class="produs" >
                         <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
                         <div class="info-prod">
-                            <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
-                            <p class="calorii">Calorii: <span class="val-calorii"><%- prod.calorii%></span></p>
-                            <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj%></span></p>
+                            <div class="col-sm-10">
+                                <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
+                                <p class="calorii">Ore: <span class="val-calorii"><%- prod.ore%></span></p>
+                                <p class="gramaj">Returnare: <span class="val-gramaj"><%- prod.refundable%></span></p>
+                                <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie%></span></p>
+                            </div>
                         </div>
-                        <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie%></span></p>
+                            
                         <figure>
                             <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
                         </figure>

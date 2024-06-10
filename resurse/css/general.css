@@ -1,3 +1,4 @@
+/* Task schema cromatica*/
 body {
   --portocaliu: #fb9804;
   --rosu: #F53E00;
@@ -13,6 +14,7 @@ body {
   --culoare-deschisa: #E0B302;
   --culoare-inchisa: #F53E00;
 }
+/* Task schema cromatica*/
 body.dark {
   --portocaliu: black;
   --rosu: magenta;
@@ -28,7 +30,7 @@ body.dark {
   --culoare-deschisa: black;
   --culoare-inchisa: #F53E00;
 }
-
+/*link-top*/
 #link-top{
   position:fixed;
   bottom:0.3em;
@@ -66,19 +68,8 @@ body.dark {
   border-bottom:0.8rem solid #F53E00;
 
 }
-
-#tab-orar th,#tab-orar td{
-  border: 1px solid black;
-  padding: 8px;
-
-}
-#tab-orar {
-  font-size: 12px; 
-  margin-bottom: 20px;
-  border-spacing: 5px; 
-  border: 5px solid black;
-  border-collapse: collapse;
-}
+/*link-top*/
+/*stilizare-taburi*/
 .container-iframe {
   display: flex;
   flex-direction: column;
@@ -101,10 +92,9 @@ body.dark {
   margin: 0 10px; 
   padding: 0.6cm;
   transition: background-color 2s ease; 
-  border-top-left-radius: 5%;
-  border-top-right-radius: 5%;
+  border-top-left-radius: 8%;
+  border-top-right-radius: 8%;
   height: 20px;
-  border-bottom: hidden;
 }
 .taburi-iframe>a:last-child{
   margin-bottom: 0;
@@ -113,6 +103,21 @@ body.dark {
 
   background-color: var(--rosu);
 }
+/*stilizare-taburi*/
+/*stilizare-tabel*/
+#tab-orar th,#tab-orar td{
+  border: 1px solid black;
+  padding: 8px;
+
+}
+#tab-orar {
+  font-size: 12px; 
+  margin-bottom: 20px;
+  border-spacing: 5px; 
+  border: 5px solid black;
+  border-collapse: collapse;
+}
+
 
 #tab-orar tr:nth-child(odd) td {
   border-bottom-color: var(--rosu);
@@ -142,29 +147,7 @@ body.dark {
   overflow-x: auto;
   max-width: 100%;
 }
-/*@media screen and (max-width:1200px){
-  #tab-orar {
-    font-size: 3px; 
-    margin-bottom: 7px;
-    border-spacing: 2.5px; 
-    border: 5px solid black;
-    border-collapse: collapse;
-  }
-
-}
-@media screen and (max-width:800px){
-
-
-  #tab-orar {
-    font-size: 2px; 
-    margin-bottom: 5px;
-    border-spacing: 1px; 
-    border: 0px solid black;
-    border-collapse: collapse;
-  }
-}*/
-
-
+/*stilizare-tabel*/
 
 video {
   display: block;
@@ -182,7 +165,7 @@ track {
   white-space: pre-line;
 }
 
-
+/* Link top*/
 #link-stilizat {
   background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(254,156,0,0.5729751373205532) 100%);
   background-size: 0% 0%; 
@@ -204,7 +187,7 @@ track {
   border-radius: 0%;
   
 }
-
+/* Link top*/
 #efect-css-stilizare-hr {
   position: relative;
   height: 20px;
@@ -299,3 +282,56 @@ track {
   transform: rotateX(180deg) skew(-45deg) scaleY(1) translate(10px, -40px);
   opacity: 0.7; 
 }
+/*animatie-banner*/
+#banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 25vw;
+  height: 25vw; 
+  background-color: var(--portocaliu);
+  opacity: 0;
+  transform: scale(0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: none; 
+}
+
+#banner p {
+  font-size: 1vw;
+}
+
+@keyframes showBanner {
+  0% {
+      opacity: 0;
+      transform: scale(0);
+      background-color: var(--portocaliu)l;
+  }
+  100% {
+      opacity: 0.75;
+      transform: scale(1);
+      background-color: var(--portocaliu);
+  }
+}
+
+@media (max-width: 1200px) {
+  #banner {
+      position: static;
+      width: auto;
+      height: auto;
+      transform: none;
+      opacity: 1;
+      display: block;
+      background-color: var(--portocaliu);
+  }
+}
+
+@media (min-width: 1201px) {
+  #banner{
+      animation: showBanner 5s forwards; /* Definește animația */
+  }
+}
+
+
+/*animatie-banner*/

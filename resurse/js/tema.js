@@ -28,6 +28,9 @@ document.addEventListener("DOMContentLoaded", function() {
             document.body.classList.remove("neutral"); // Elimină clasa "neutral" dacă este prezentă
             document.body.classList.add("light");
             localStorage.setItem("tema", "light");
+            document.body.classList.remove("dark");
+            document.body.classList.add("tema");
+            localStorage.setItem("switchState", "unchecked");
         }
     }
     // Schimbă tema netural
@@ -40,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function() {
             document.body.classList.remove("light"); // Elimină clasa "light" dacă este prezentă
             document.body.classList.add("neutral");
             localStorage.setItem("tema", "neutral");
+            document.body.classList.remove("dark");
+            document.body.classList.add("tema");
+            localStorage.setItem("switchState", "unchecked");
         }
     }
 });
@@ -69,5 +75,6 @@ document.addEventListener("DOMContentLoaded", function() {
             document.body.classList.add("tema");
             localStorage.setItem("switchState", "unchecked");
         }
+        
     });
 });

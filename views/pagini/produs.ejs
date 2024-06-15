@@ -1,179 +1,155 @@
 <!DOCTYPE html>
-<html  lang="ro">
-    <head>
-        <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
-        <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
-        
-        <title>Cofetăria Dulcelind - home</title>
-        <%- include("../fragmente/head") %>     
-        <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
+<html lang="ro">
+<head>
+    <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
+    <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
+    <title>Cofetăria Dulcelind - home</title>
+    <%- include("../fragmente/head") %>     
+    <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
+    <script src="/resurse/js/produs_acordeon.js"></script>
 
-
-    </head>
-    <body>
+</head>
+<body>
     <%- include("../fragmente/header") %>
-
     <main>
         <section>
             <h2>Pagină produs</h2>
             <article id="art-produs">
                 <h3><span class="nume"><%- locals.prod.nume %></span></h3>
+                <figure class="imag-produs">
+                    <img src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
+                </figure>
                 <div class="accordion" id="productAccordion">
-                    <div class="card">
-                        <figure class="imag-produs">
-                            <img src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
-                        </figure>
-                        <div class="card-header" id="headingPrice">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapsePrice" aria-expanded="true" aria-controls="collapsePrice">
-                                    Preț
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapsePrice" class="collapse" aria-labelledby="headingPrice" data-parent="#productAccordion">
-                            <div class="card-body">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingPrice">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice" aria-expanded="true" aria-controls="collapsePrice">
+                                Preț
+                            </button>
+                        </h2>
+                        <div id="collapsePrice" class="accordion-collapse collapse show" aria-labelledby="headingPrice">
+                            <div class="accordion-body">
                                 <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingDescription">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription">
-                                    Descriere
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseDescription" class="collapse" aria-labelledby="headingDescription" data-parent="#productAccordion">
-                            <div class="card-body">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingDescription">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription">
+                                Descriere
+                            </button>
+                        </h2>
+                        <div id="collapseDescription" class="accordion-collapse collapse" aria-labelledby="headingDescription">
+                            <div class="accordion-body">
                                 <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingPlatform">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsePlatform" aria-expanded="false" aria-controls="collapsePlatform">
-                                    Platformă
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapsePlatform" class="collapse" aria-labelledby="headingPlatform" data-parent="#productAccordion">
-                            <div class="card-body">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingPlatform">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlatform" aria-expanded="false" aria-controls="collapsePlatform">
+                                Platformă
+                            </button>
+                        </h2>
+                        <div id="collapsePlatform" class="accordion-collapse collapse" aria-labelledby="headingPlatform">
+                            <div class="accordion-body">
                                 <p>Platformă: <span class="tip_produs"><%- locals.prod.tip_produs %> </span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingPlayers">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsePlayers" aria-expanded="false" aria-controls="collapsePlayers">
-                                    Nr. Jucători
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapsePlayers" class="collapse" aria-labelledby="headingPlayers" data-parent="#productAccordion">
-                            <div class="card-body">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingPlayers">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlayers" aria-expanded="false" aria-controls="collapsePlayers">
+                                Nr. Jucători
+                            </button>
+                        </h2>
+                        <div id="collapsePlayers" class="accordion-collapse collapse" aria-labelledby="headingPlayers">
+                            <div class="accordion-body">
                                 <p>Nr. Jucători: <span class="nr_players"><%- locals.prod.nr_players %> </span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingHours">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseHours" aria-expanded="false" aria-controls="collapseHours">
-                                    Ore
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseHours" class="collapse" aria-labelledby="headingHours" data-parent="#productAccordion">
-                            <div class="card-body">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingHours">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHours" aria-expanded="false" aria-controls="collapseHours">
+                                Ore
+                            </button>
+                        </h2>
+                        <div id="collapseHours" class="accordion-collapse collapse" aria-labelledby="headingHours">
+                            <div class="accordion-body">
                                 <p>Ore: <span class="ore"><%- locals.prod.ore %> </span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingCategory">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
-                                    Categorie
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseCategory" class="collapse" aria-labelledby="headingCategory" data-parent="#productAccordion">
-                            <div class="card-body">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingCategory">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
+                                Categorie
+                            </button>
+                        </h2>
+                        <div id="collapseCategory" class="accordion-collapse collapse" aria-labelledby="headingCategory">
+                            <div class="accordion-body">
                                 <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingSpecsMin">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSpecsMin" aria-expanded="false" aria-controls="collapseSpecsMin">
-                                    Specificații Minime
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseSpecsMin" class="collapse" aria-labelledby="headingSpecsMin" data-parent="#productAccordion">
-                            <div class="card-body">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSpecsMin">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpecsMin" aria-expanded="false" aria-controls="collapseSpecsMin">
+                                Specificații Minime
+                            </button>
+                        </h2>
+                        <div id="collapseSpecsMin" class="accordion-collapse collapse" aria-labelledby="headingSpecsMin">
+                            <div class="accordion-body">
                                 <p>Specificații Minime: <span class="specificatii_min"><%- locals.prod.specificatii_min.join(', ') %> </span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingSpecsMax">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSpecsMax" aria-expanded="false" aria-controls="collapseSpecsMax">
-                                    Specificații Maxime
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseSpecsMax" class="collapse" aria-labelledby="headingSpecsMax" data-parent="#productAccordion">
-                            <div class="card-body">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSpecsMax">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpecsMax" aria-expanded="false" aria-controls="collapseSpecsMax">
+                                Specificații Maxime
+                            </button>
+                        </h2>
+                        <div id="collapseSpecsMax" class="accordion-collapse collapse" aria-labelledby="headingSpecsMax">
+                            <div class="accordion-body">
                                 <p>Specificații Maxime: <span class="specificatii_max"><%- locals.prod.specificatii_max.join(', ') %> </span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingRefundable">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseRefundable" aria-expanded="false" aria-controls="collapseRefundable">
-                                    Refundabil
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseRefundable" class="collapse" aria-labelledby="headingRefundable" data-parent="#productAccordion">
-                            <div class="card-body">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingRefundable">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRefundable" aria-expanded="false" aria-controls="collapseRefundable">
+                                Refundabil
+                            </button>
+                        </h2>
+                        <div id="collapseRefundable" class="accordion-collapse collapse" aria-labelledby="headingRefundable">
+                            <div class="accordion-body">
                                 <p>Refundabil: <span class="refundable"><%- locals.prod.refundable ? 'Da' : 'Nu' %> </span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingOS">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOS" aria-expanded="false" aria-controls="collapseOS">
-                                    Sisteme de Operare
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseOS" class="collapse" aria-labelledby="headingOS" data-parent="#productAccordion">
-                            <div class="card-body">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOS">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOS" aria-expanded="false" aria-controls="collapseOS">
+                                Sisteme de Operare
+                            </button>
+                        </h2>
+                        <div id="collapseOS" class="accordion-collapse collapse" aria-labelledby="headingOS">
+                            <div class="accordion-body">
                                 <p>Windows: <span class="windows"><%- locals.prod.windows ? 'Da' : 'Nu' %> </span></p>
                                 <p>Linux: <span class="linux"><%- locals.prod.linux ? 'Da' : 'Nu' %> </span></p>
-                                <p>MacOS: <span class="macos"><%- locals.prod.macos ? 'Da' : 'Nu' %> </span></p>
+                                <p>MacOS: <span class="macos"><%- locals.prod.macos %> </span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingAddedDate">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAddedDate" aria-expanded="false" aria-controls="collapseAddedDate">
-                                    Data adăugare
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseAddedDate" class="collapse" aria-labelledby="headingAddedDate" data-parent="#productAccordion">
-                            <div class="card-body">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingAddedDate">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAddedDate" aria-expanded="false" aria-controls="collapseAddedDate">
+                                Data adăugare
+                            </button>
+                        </h2>
+                        <div id="collapseAddedDate" class="accordion-collapse collapse" aria-labelledby="headingAddedDate">
+                            <div class="accordion-body">
                                 <p>Data adăugare: <span class="data_adaugare"><%- locals.prod.data_adaugare %> </span></p>
                             </div>
                         </div>
@@ -198,9 +174,9 @@
             </article>
         </section>
     </main>
-    
-    
-
     <%- include("../fragmente/footer") %>
-    </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+</body>
 </html>

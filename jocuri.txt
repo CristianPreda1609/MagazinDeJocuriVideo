@@ -25,3 +25,34 @@ CREATE TABLE IF NOT EXISTS jocuri (
    imagine VARCHAR(300),
    data_adaugare TIMESTAMP DEFAULT current_timestamp
 );
+INSERT INTO jocuri ( nume, descriere, pret, tip_produs, nr_players, ore, categorie, specificatii_min, specificatii_max, refundable, windows, linux, macos, imagine, data_adaugare)
+VALUES
+('F1 2023', 'Experimentează viteză pură în cel mai recent simulator de curse F1!', 59.99, 'steam', 'single', 50, 'curse', '{"OS: Windows 10 64-bit","Procesor: Intel Core i5-9600K / AMD Ryzen 5 3600"}', '{"OS: Windows 10 64-bit","Procesor: Intel Core i7-10700K / AMD Ryzen 7 5800X"}', true, true, false, false, 'F1_2023.jpg', '2024-05-26 23:22:38.340034'),
+('Age of Empires IV', 'Construiește și condu imperii în această ultimă adăugire la seria Age of Empires!', 49.99, 'steam', 'single', 60, 'strategie', '{"OS: Windows 10 64-bit"}', '{"OS: Windows 10 64-bit"}', true, true, false, false, 'age_of_empires_iv.jpg', '2024-05-26 23:22:38.340034'),
+('World of Warcraft', 'Intră într-o lume vastă și plină de aventură alături de milioane de jucători online!', 14.99, 'steam', 'single', 100, 'mmo', '{"OS: Windows 10 64-bit"}', '{"OS: Windows 10 64-bit"}', false, true, false, false, 'wow.jpg', '2024-05-26 23:22:38.340034'),
+('Realm of Kings', 'Explorează un regat fantastic plin de aventuri și provocări.', 59.99, 'steam', 'single', 50, 'strategie', '{"CPU: Intel i5","RAM: 8GB","GPU: GTX 1050"}', '{"CPU: Intel i7","RAM: 16GB","GPU: GTX 1070"}', true, true, false, false, 'realm_of_kings.jpg', '2024-06-10 23:39:24.363579'),
+('Cybernetic Revolt', 'Intră în lumea futuristă a unei revolte cibernetice.', 69.99, 'xbox', 'multi', 70, 'mmo', '{"CPU: AMD Ryzen 5","RAM: 8GB","GPU: RX 580"}', '{"CPU: AMD Ryzen 7","RAM: 16GB","GPU: RX 590"}', true, true, true, false, 'cybernetic_revolt.jpg', '2024-06-10 23:39:24.363579'),
+('Mystic Quest', 'Rezolvă misterele unei lumi pline de magie și creaturi fantastice.', 49.99, 'playstation', 'single', 45, 'strategie', '{"CPU: Intel i3","RAM: 4GB","GPU: GTX 960"}', '{"CPU: Intel i5","RAM: 8GB","GPU: GTX 1060"}', true, true, false, true, 'mystic_quest.jpg', '2024-06-10 23:39:24.363579'),
+('Galactic Warfare', 'Angrenează-te în bătălii epice în spațiul cosmic.', 79.99, 'steam', 'multi', 80, 'mmo', '{"CPU: Intel i5","RAM: 8GB","GPU: GTX 1060"}', '{"CPU: Intel i7","RAM: 16GB","GPU: RTX 2060"}', true, true, true, false, 'galactic_warfare.jpg', '2024-06-10 23:39:24.363579'),
+('Dungeon Master', 'Devino maestrul temnițelor și înfruntă cele mai întunecate creaturi.', 44.99, 'xbox', 'single', 35, 'strategie', '{"CPU: AMD Ryzen 3","RAM: 8GB","GPU: GTX 1050"}', '{"CPU: AMD Ryzen 5","RAM: 16GB","GPU: GTX 1070"}', true, true, false, false, 'dungeon_master.jpg', '2024-06-10 23:39:24.363579'),
+('Space Odyssey', 'Explorează galaxii îndepărtate și descoperă noi civilizații.', 89.99, 'playstation', 'multi', 90, 'mmo', '{"CPU: Intel i7","RAM: 16GB","GPU: RTX 2080"}', '{"CPU: Intel i9","RAM: 32GB","GPU: RTX 3080"}', true, true, true, true, 'space_odyssey.jpg', '2024-06-10 23:40:06.080589'),
+('Kingdom Conquest', 'Condu-ți regatul spre victorie în acest joc strategic.', 54.99, 'steam', 'single', 60, 'strategie', '{"CPU: Intel i5","RAM: 8GB","GPU: GTX 1060"}', '{"CPU: Intel i7","RAM: 16GB","GPU: RTX 2060"}', true, true, false, false, 'kingdom_conquest.jpg', '2024-06-10 23:40:06.080589');
+
+
+
+-- Inserarea seturilor
+INSERT INTO seturi (nume_set, descriere_set) VALUES 
+('Set Exploratori', 'Un set de jocuri perfecte pentru cei care iubesc să exploreze noi lumi.'),
+('Set Futurist', 'Set de jocuri care te duc în viitor și în mijlocul unei revolte tehnologice.'),
+('Set Magie și Mister', 'Jocuri pline de magie, mister și creaturi fantastice.'),
+('Set Spațial', 'Un set pentru cei pasionați de explorarea spațiului cosmic.'),
+('Set Războinic', 'Set de jocuri pentru cei care iubesc strategiile de război și cuceririle.');
+
+-- Asocierea produselor cu seturile
+INSERT INTO asociere_set (id_set, id_produs) VALUES
+(1, 1), (1, 3), (1, 5),
+(2, 2), (2, 4), (2, 6),
+(3, 3), (3, 5), (3, 7),
+(4, 4), (4, 6), (4, 1),
+(5, 1), (5, 2), (5, 7);
+

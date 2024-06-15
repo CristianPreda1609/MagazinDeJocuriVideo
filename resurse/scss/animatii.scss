@@ -15,7 +15,29 @@ $animation-delay-base: 300ms;
 }
 
 @for $i from 1 through 3 {
-  .bar#{$i} {
+  .animated-bar#{$i} {
     animation: bar-animation $animation-duration ease ($animation-delay-base + $animation-delay-increment * ($i - 1));
   }
+}
+
+@keyframes appearMenuIcon {
+  0% {
+    background-color: transparent;
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    background-color: #fff; 
+    transform: translateY(0) rotate(1805deg);
+    opacity: 0.5;
+  }
+  100% {
+    background-color: #fff; 
+    transform: translateY(0) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+#hamburger div {
+  animation: appearMenuIcon 2s ease forwards;
 }

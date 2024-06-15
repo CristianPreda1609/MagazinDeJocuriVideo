@@ -1,0 +1,66 @@
+:root {
+    --visited-link-color: #a0a0a0; 
+    --external-link-color: #0000FF; 
+  }
+  
+  a:visited {
+    color: var(--visited-link-color);
+  }
+  
+  /* Stilizarea linkurilor externe */
+  a[href^="http"]:not(.taburi-iframe a)::before {
+    content: '⮳';
+    font-size: 1.5em; 
+    margin-right: 0.25em;
+    color: var(--external-link-color);
+    transition: color 0.3s ease;
+  }
+  
+  a[href^="http"]:not(.taburi-iframe a):hover::before {
+    color: #FF0000; 
+  }
+  
+  /* Stilizarea linkurilor din conținutul paginii */
+  main a:not(.taburi-iframe a) {
+    position: relative;
+    background-image: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(254,156,0,0.5729751373205532) 40%, transparent 80%, transparent 100%);
+    background-size: 0% 0%;
+    background-position: center;
+    transition: background-size 0.5s linear;
+    background-repeat: no-repeat;
+  }
+  
+  /* Pata de culoare la hover */
+  main a:not(.taburi-iframe a):hover {
+    background-size: 100% 100%;
+    background-position: center;
+  }
+  
+  /* Border la click */
+  main a:not(.taburi-iframe a):active {
+    transition: 0;
+    border: 5px solid black;
+  }
+  
+  /* Animatia pentru link-urile externe */
+  a[href^="http"]:not(.taburi-iframe a) {
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(254,156,0,0.5729751373205532) 100%);
+    background-size: 0% 0%; 
+    background-position: center;
+    transition: background-size 0.5s linear;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+  }
+  
+  a[href^="http"]:not(.taburi-iframe a):hover {
+    background-size: 100% 100%; 
+    background-position: center; 
+    border-radius: 100%; 
+  }
+  
+  a[href^="http"]:not(.taburi-iframe a):active {
+    transition: 0;
+    border: 5px solid black;
+    border-radius: 0%;
+  }
+  

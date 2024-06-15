@@ -1,0 +1,3 @@
+div:hover > div > p > a, div:hover > div > p > b {
+  background: yellow;
+}

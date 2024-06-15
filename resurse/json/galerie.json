@@ -1,39 +1,75 @@
 {
-	"cale_galerie":"resurse/imagini/galerie",
-	"imagini": [
-		{
-			"fisier":"briose-frisca.png",
-			"descriere":"Brioșe",
-			"luni":["martie","februarie","noiembrie","aprilie"]
-		},
-		{
-			"fisier":"clatite.png",
-			"descriere":"Clătite cu dulceață",
-			"luni":["ianuarie","februarie","iunie"]
-			
-		},
-		{
-			"fisier":"gogosi.png",
-			"descriere":"Gogoși glazurate",
-			"luni":["ianuarie","noiembrie","iunie","martie","aprilie"]
-		},
-		{
-			"fisier":"tort-scortisoara.png",
-			"descriere":"Tort cu scorțisoară",
-			
-			"luni":["noiembrie","aprilie"]
-		},
-		{
-			"fisier":"prajitura-ciocolata.png",
-			"descriere":"Prăjitură cu ciocolată"
-		},
-		{
-			"fisier":"tarta-afine.png",
-			"descriere":"Tartă cu afine"
-		},
-		{
-			"fisier":"tort-trandafiri.png",
-			"descriere":"Tort special"
-		}
-	]
+    "cale_galerie": "resurse/imagini/produse",
+    "imagini": [
+        {
+            "fisier": "F1_2023.jpg",
+            "nume_imag": "Experimentează viteză pură",
+            "alternativ": "Imagine F1",
+            "descriere_imag": "Experimentează viteză pură în cel mai recent simulator de curse F1!",
+            "intervale_ore": [[2, 7], [14, 16], [22, 23]]
+        },
+        {
+            "fisier": "age_of_empires_iv.jpg",
+            "nume_imag": "Age of Empires IV",
+            "alternativ": "Imagine Age of Empires",
+            "descriere_imag": "Construiește și condu imperii în această ultimă adăugire la seria Age of Empires!",
+            "intervale_ore": [[1, 5], [12, 14], [19, 21]]
+        },
+        {
+            "fisier": "wow.jpg",
+            "nume_imag": "World of Warcraft",
+            "alternativ": "Imagine WoW",
+            "descriere_imag": "Intră într-o lume vastă și plină de aventură alături de milioane de jucători online!",
+            "intervale_ore": [[6, 9], [17, 19], [23, 23]]
+        },
+        {
+            "fisier": "realm_of_kings.jpg",
+            "nume_imag": "Realm of Kings",
+            "alternativ": "Imagine Realm of Kings",
+            "descriere_imag": "Explorează un regat fantastic plin de aventuri și provocări.",
+            "intervale_ore": [[1, 4], [18, 20], [22, 23]]
+        },
+        {
+            "fisier": "cybernetic_revolt.jpg",
+            "nume_imag": "Cybernetic Revolt",
+            "alternativ": "Imagine Cybernetic Revolt",
+            "descriere_imag": "Intră în lumea futuristă a unei revolte cibernetice.",
+            "intervale_ore": [[7, 10], [14, 16], [20, 22]]
+        },
+        {
+            "fisier": "mystic_quest.jpg",
+            "nume_imag": "Mystic Quest",
+            "alternativ": "Imagine Mystic Quest",
+            "descriere_imag": "Rezolvă misterele unei lumi pline de magie și creaturi fantastice.",
+            "intervale_ore": [[5, 8], [13, 15], [18, 20]]
+        },
+        {
+            "fisier": "galactic_warfare.jpg",
+            "nume_imag": "Galactic Warfare",
+            "alternativ": "Imagine Galactic Warfare",
+            "descriere_imag": "Angrenează-te în bătălii epice în spațiul cosmic.",
+            "intervale_ore": [[4, 7], [10, 12], [16, 18]]
+        },
+        {
+            "fisier": "dungeon_master.jpg",
+            "nume_imag": "Dungeon Master",
+            "alternativ": "Imagine Dungeon Master",
+            "descriere_imag": "Devino maestrul temnițelor și înfruntă cele mai întunecate creaturi.",
+            "intervale_ore": [[9, 11], [14, 17], [21, 23]]
+        },
+        {
+            "fisier": "space_odyssey.jpg",
+            "nume_imag": "Space Odyssey",
+            "alternativ": "Imagine Space Odyssey",
+            "descriere_imag": "Explorează galaxii îndepărtate și descoperă noi civilizații.",
+            "intervale_ore": [[8, 10], [13, 15], [19, 22]]
+        },
+        {
+            "fisier": "kingdom_conquest.jpg",
+            "nume_imag": "Kingdom Conquest",
+            "alternativ": "Imagine Kingdom Conquest",
+            "descriere_imag": "Condu-ți regatul spre victorie în acest joc strategic.",
+            "intervale_ore": [[3, 6], [11, 13], [15, 17]]
+        }
+    ]
 }

@@ -1,83 +1,87 @@
 <header>
-  
     <section id="top"></section>
     <h1>        
-        Games for Everyone
+      Games for Everyone
     </h1>
     <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-        <button type="button" class="btn btn-secondary" id="schimba_tema">tema intunecata</button>
-        <button type="button" class="btn btn-secondary" id="schimba_tema2">Schimba tema</button>
-    </div>
-    
-    </header>
-    <nav>
-    
-        <label id="hamburger" for="ch-menu">
-            <div class="bar bar1 animated-bar1"></div>
-            <div class="bar bar2 animated-bar2"></div>
-            <div class="bar bar3 animated-bar3"></div>
-        </label>
-        <input id="ch-menu" type="checkbox">
-        <ul class="meniu">
-            <li><div id="acasa-mediu"><span class="fas fa-house"></span></div><div id="acasa"><a href="/index">Acasa</a></div>
-                <ul>
-                    <li><a href="/index#welcome"><span class="arrow">→</span> Pagină acasă</a></li>
-                    <li><a href="/index#orar"><span class="arrow">→</span> Orar</a></li>
-                    <li><a href="/index#promotii"><span class="arrow">→</span> Promotii</a></li>
-                    <li><a href="/index#fig1"><span class="arrow">→</span> NotDone</a></li>
-                    <li><a href="/indexs#fgi2"><span class="arrow">→</span> NotDone</a></li>
-                    <li><a href="/index#fig3"><span class="arrow">→</span> NotDone</a></li>
-                    <li><a href="/index#produse"><span class="arrow">→</span> NotDone</a></li>
-                    <li><a href="/index#fig8"><span class="arrow">→</span> NotDone</a></li>
-                </ul>
-            
-            
-            </li>
-            <li><div><a href="produse.ejs">Platforma</a></div>
-                <ul>
-                    <li><a href="produse#steam"><span class="arrow">→</span> Steam</a></li>
-                    <li><a href="produse.html#xbox"><span class="arrow">→</span> Xbox Live</a></li>
-                    <li><a href="produse.html#pspn"><span class="arrow">→</span> Playstation</a></li>
-                </ul>
-            </li>
-            <li><div><a href="produse.ejs">Gen</a></div>
-                <ul>
-                    <li><a href="produse.html#curse"><span class="arrow">→</span> Curse</a></li>
-                    <li><a href="produse.html#strategie"><span class="arrow">→</span> Strategie</a></li>
-                    <li><a href="produse.html#mmo"><span class="arrow">→</span> MMO</a></li>
-                </ul>
-            </li>
-
-            <li> <div><a href="produse.ejs">Software</a></div>
-                <ul>
-                    
-                    <li><a href="produse.html#office"><span class="arrow">→</span> Office</a></li>
-                    <li><a href="produse.html#security"><span class="arrow">→</span> Security</a></li>
-                    <li><a href="produse.html#di"><span class="arrow">→</span> Design & Illustration</a></li>
-                </ul>
-            </li> 
-            <li><div><a href="/gift">Gift Cards</a></div>
-                <ul>
-                    
-                    <li><a href="gift#steam"><span class="arrow">→</span>Steam</a></li>
-                    <li><a href="gift#blizzard"><span class="arrow">→</span>Blizzard</a></li>
-                    <li><a href="gift#psp"><span class="arrow">→</span>Playstation</a></li>
-                    <li><a href="gift#xbox"><span class="arrow">→</span>Xbox</a></li>
-                    <li><a href="gift#mobile"><span class="arrow">→</span>Mobile</a></li>
-
-                </ul>
-            </li> 
-            <li> <div><a href="/produse">Produse</a></div>
-                <ul>
-                    
-                    <li><a href="/produse?tip=office"><span class="arrow">→</span> Office</a></li>
-                    <li><a href="/produse?tip=security"><span class="arrow">→</span> Security</a></li>
-                    <li><a href="/produse?tip=html#di"><span class="arrow">→</span> Design & Illustration</a></li>
-                </ul>
-            </li> 
-            <li><a href="/cos-virtual">Cos</a></li>
-            <li><a href="/contact">Contact</a></li>
-             <%- include("../fragmente/submeniu-administrare") %> <%-
-             include("../fragmente/submeniu-utilizator-logat") %>
+      <div class="form-check form-switch custom-switch">
+          <input class="form-check-input" type="checkbox" id="schimba_tema">
+          <label class="switch-slider" for="schimba_tema"></label>
+      </div>
+      <button type="button" class="btn btn-secondary" id="schimba_tema2">Tema Deschisă</button>
+      <button type="button" class="btn btn-primary" id="schimba_tema3">Tema Neutră</button>
+  </div>
+  
+  </header>
+  <nav>
+    <label id="hamburger" for="ch-menu">
+      <div class="bar bar1 animated-bar1"></div>
+      <div class="bar bar2 animated-bar2"></div>
+      <div class="bar bar3 animated-bar3"></div>
+    </label>
+    <input id="ch-menu" type="checkbox">
+    <ul class="meniu">
+      <li>
+        <div id="acasa-mediu"><span class="fas fa-house"></span></div>
+        <div id="acasa"><a href="/index">Acasa</a></div>
+        <ul>
+          <li><a href="/index#welcome"><span class="arrow">→</span> Pagină acasă</a></li>
+          <li><a href="/index#orar"><span class="arrow">→</span> Orar</a></li>
+          <li><a href="/index#promotii"><span class="arrow">→</span> Promotii</a></li>
+          <li><a href="/index#fig1"><span class="arrow">→</span> NotDone</a></li>
+          <li><a href="/indexs#fgi2"><span class="arrow">→</span> NotDone</a></li>
+          <li><a href="/index#fig3"><span class="arrow">→</span> NotDone</a></li>
+          <li><a href="/index#produse"><span class="arrow">→</span> NotDone</a></li>
+          <li><a href="/index#fig8"><span class="arrow">→</span> NotDone</a></li>
         </ul>
-    </nav>
+      </li>
+      <li>
+        <div><a href="produse.ejs">Platforma</a></div>
+        <ul>
+          <li><a href="produse#steam"><span class="arrow">→</span> Steam</a></li>
+          <li><a href="produse.html#xbox"><span class="arrow">→</span> Xbox Live</a></li>
+          <li><a href="produse.html#pspn"><span class="arrow">→</span> Playstation</a></li>
+        </ul>
+      </li>
+      <li>
+        <div><a href="produse.ejs">Gen</a></div>
+        <ul>
+          <li><a href="produse.html#curse"><span class="arrow">→</span> Curse</a></li>
+          <li><a href="produse.html#strategie"><span class="arrow">→</span> Strategie</a></li>
+          <li><a href="produse.html#mmo"><span class="arrow">→</span> MMO</a></li>
+        </ul>
+      </li>
+      <li>
+        <div><a href="produse.ejs">Software</a></div>
+        <ul>
+          <li><a href="produse.html#office"><span class="arrow">→</span> Office</a></li>
+          <li><a href="produse.html#security"><span class="arrow">→</span> Security</a></li>
+          <li><a href="produse.html#di"><span class="arrow">→</span> Design & Illustration</a></li>
+        </ul>
+      </li>
+      <li>
+        <div><a href="/gift">Gift Cards</a></div>
+        <ul>
+          <li><a href="gift#steam"><span class="arrow">→</span> Steam</a></li>
+          <li><a href="gift#blizzard"><span class="arrow">→</span> Blizzard</a></li>
+          <li><a href="gift#psp"><span class="arrow">→</span> Playstation</a></li>
+          <li><a href="gift#xbox"><span class="arrow">→</span> Xbox</a></li>
+          <li><a href="gift#mobile"><span class="arrow">→</span> Mobile</a></li>
+        </ul>
+      </li>
+      <li>
+        <div><a href="/produse">Produse</a></div>
+        <ul>
+          <li><a href="/produse">toate</a></li>
+          <% for (let opt of locals.optiuniMeniu) { %>
+            <li><a href="/produse?categorie=<%- opt.unnest %>"><%- opt.unnest %></a></li>
+          <% } %>
+        </ul>
+      </li>
+      <li><a href="/cos-virtual">Cos</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <%- include("../fragmente/submeniu-administrare") %>
+      <%- include("../fragmente/submeniu-utilizator-logat") %>
+    </ul>
+  </nav>
+  

@@ -15,13 +15,13 @@ html{
 
 #grid-pagina{
     display: grid;
-    grid-template-columns: repeat(3,1fr); /*1fr 1fr 1fr;*/
+    grid-template-columns: repeat(6,1fr); /*1fr 1fr 1fr;*/
 
-    grid-template-areas:    "welcome welcome welcome"
-                            " orar orar promotii " 
-                            " orar orar fig1  "
-                            "fig2  fig3 produse "
-                            "fig8 fig8 fig8";
+    grid-template-areas:    "welcome welcome welcome welcome welcome welcome"
+                            " orar orar orar promotii promotii promotii" 
+                            " orar orar orar fig1 fig1 fig1"
+                            "fig2  fig3 fig3 fig3 fig3 produse "
+                            "fig8 fig8 fig8 fig8 fig8 fig8";
 }
 
 #grid-pagina>*{
@@ -30,32 +30,41 @@ html{
 }
 #grid-pagina>figure{
     margin: 0;
+    background-color: var(--culoare_grid);
 
 }
 #welcome{
     grid-area: welcome;
+    background-color: var(--culoare_grid);
 }
 #promotii{
     grid-area: promotii;
+    background-color: var(--culoare_grid);
 }
 #orar{
     grid-area: orar;
+    background-color: var(--culoare_grid);
 }
  
 #fig1{
     grid-area: fig1;
+    background-color: var(--culoare_grid);
 }
 #fig2{
     grid-area: fig2;
+    background-color: var(--culoare_grid);
 }
 #fig3{
     grid-area: fig3;
+    background-color: var(--culoare_grid);
 }
 #produse{
     grid-area: produse;
+    background-color: var(--culoare_grid);
 }
 #fig8{
     grid-area: fig8;
+    background-color: var(--culoare_grid);
 }
 
 @media screen and (max-width:1200px){

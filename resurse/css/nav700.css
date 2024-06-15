@@ -1,119 +1,95 @@
-
 #hamburger {
-    display: block;
+  display: block;
+  position: relative;
+  width: 7%; 
+  height: 70%; 
+  top: 3px;
+  right: -7px;
 }
-@keyframes appearMenuIcon {
-    0% {
-      background-color: transparent;
-      transform: translateY(-10px) rotate(0deg);
-      opacity: 0;
-    }
-    50% {
-      background-color: #fff; 
-      transform: translateY(0) rotate(1805deg);
-      opacity: 0.5;
-    }
-    100% {
-      background-color: #fff; 
-      transform: translateY(0) rotate(180deg);
-      opacity: 1;
-    }
-  }
-#hamburger {
-    position: relative;
-    width: 7%; 
-    height: 70%; 
-    top: 3px;
-    right: -7px;
-  }
-  
-  #hamburger div {
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    background-color: #fff; 
-    border-radius: 2px;
-    transition: background-color 0.3s ease;
-    animation: appearMenuIcon 2s ease forwards;
-  }
-  
-  #hamburger div:nth-child(1) {
-    top: 0;
-  }
-  
-  #hamburger div:nth-child(2) {
-    top: 40%;
-    transform: translateY(-50%);
-  }
-  
-  #hamburger div:nth-child(3) {
-    bottom: 0;
-  }
-  
-  #hamburger:hover div {
-    background-color: #ccc;
-  }
 
+#hamburger div {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: #fff; 
+  border-radius: 2px;
+  transition: background-color 0.3s ease;
+}
+
+#hamburger div:nth-child(1) {
+  top: 0;
+}
+
+#hamburger div:nth-child(2) {
+  top: 40%;
+  transform: translateY(-50%);
+}
+
+#hamburger div:nth-child(3) {
+  bottom: 0;
+}
+
+#hamburger:hover div {
+  background-color: #ccc;
+}
 
 .meniu {
-    display: none;
-    position: absolute;
-    width: 100%;
+  display: none;
+  position: absolute;
+  width: 100%;
 }
-
 
 nav ul.meniu li {
-    width: 100%;
+  width: 100%;
 }
 
-
 nav ul.meniu > li ul {
-    position: absolute;
-    width: 100%;
-    z-index: 200;
-    transform: scale(1, 1) !important;
-    opacity: 1 !important;
+  position: absolute;
+  width: 100%;
+  z-index: 200;
+  transform: scale(1, 1) !important;
+  opacity: 1 !important;
 }
 
 #ch-menu:checked + .meniu {
-    display: block;
-    z-index: 2;
-    position: relative;
-    animation-name: aparitie_meniu_p;
-    animation-iteration-count: 1;
-    animation-duration: 0.7s;
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
+  display: block;
+  z-index: 2;
+  position: relative;
+  transform-origin: top left;
+  transform: scale(0);
+  animation-name: aparitie_meniu_p;
+  animation-iteration-count: 1;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
 }
 
 #ch-menu:checked + .meniu > li > div,
 #ch-menu:checked + .meniu > li > a {
-    z-index: 2;
-    position: relative;
-    transform-origin: 50% 50%;
-    animation-name: aparitie_meniu_p_btn;
-    animation-iteration-count: 1;
-    animation-duration: 0.7s;
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
+  z-index: 2;
+  position: relative;
+  transform-origin: 50% 50% ;
+  animation-name: aparitie_meniu_p_btn;
+  animation-iteration-count: 1;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
 }
-
-
-
 @keyframes aparitie_meniu_p {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes aparitie_meniu_p_btn {
-    0% {
-        transform: scale(0, 0);
-    }
-    100% {
-        transform: scale(1, 1);
-    }
+  0% {
+    transform: scale(0, 0);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
 }

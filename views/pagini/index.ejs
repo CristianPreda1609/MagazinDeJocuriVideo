@@ -28,13 +28,10 @@
                     <h2>Bun Venit!</h2>
                     <p>Ip: <%- locals.ip %></p>
                     <div id="imagine">
-		
                     </div>
-                    <div id="text">
-                        Bine ați venit!
-                    </div>
-                    <div id="text-reflectat">
-                        Bine ați venit!
+                    <div id="container">
+                        <div id="text">Bine ați venit!</div>
+                        <div id="text-reflectat">Bine ați venit!</div>
                     </div>
                     <figure>
                         <picture class="imagine1">
@@ -84,13 +81,12 @@
                         <figcaption>GTA VI it's out!</figcaption>
                     </figure>
                 <div class="container-iframe">
-
-                        <div class="taburi-iframe">
-                            <a href="https://www.youtube.com/embed/QdBZY2fkU-0?si=jV5N1_C49OOpjztI" target="GTA6"><b>Trailer 1</b></a>
-                            <a href="https://www.youtube.com/embed/NMWkEt_KF6g?si=iN3mFYmGe9hd2kWy" target="GTA6"><b>Trailer 2</b></a>
-                           </div> 
-                           <iframe name="GTA6" width="560" height="315" src="https://www.youtube.com/embed/QdBZY2fkU-0?si=jV5N1_C49OOpjztI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                   
+                    <div class="taburi-iframe">
+                        <a href="https://www.youtube.com/embed/QdBZY2fkU-0?si=jV5N1_C49OOpjztI" target="GTA6"><b>Trailer 1</b></a>
+                        <a href="https://www.youtube.com/embed/NMWkEt_KF6g?si=iN3mFYmGe9hd2kWy" target="GTA6"><b>Trailer 2</b></a>
+                     </div> 
+                    <iframe name="GTA6" width="560" height="315" src="https://www.youtube.com/embed/QdBZY2fkU-0?si=jV5N1_C49OOpjztI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            
                     <p class = "intro"><b>Games that just came out!</b></p>
                 </div>
                 </section>
@@ -252,26 +248,38 @@
                 <section id="fig8">
                     <h2>Galerie</h2>
                     <div id="grid-galerie" class="zigzag-grid">
-                        <% var vLuni=["ianuarie","februarie","martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie"]; %>
-                        <% var d=new Date(); %>
-                        <% var lunaCurenta=vLuni[d.getMonth()]; %>
-
+                        <% var d = new Date(); %>
+                        <% var oraCurenta = d.getHours(); %>
+                        <% var index = 1; %>
+                    
                         <% for(let imag of locals.imagini) { %>
-                            <% if (imag?.luni?.includes("aprilie")) { %>
+                            <% var afiseazaImagine = false; %>
+                            <% if(imag?.intervale_ore) { %>
+                                <% for(let interval of imag.intervale_ore) { %>
+                                    <% if(oraCurenta >= interval[0] && oraCurenta <= interval[1]) { %>
+                                        <% afiseazaImagine = true; %>
+                                        <% break; %>
+                                    <% } %>
+                                <% } %>
+                            <% } else { %>
+                                <% afiseazaImagine = true; %>
+                            <% } %>
+                    
+                            <% if(afiseazaImagine) { %>
                                 <div class="imag">
                                     <figure>
                                         <picture>
                                             <source srcset="<%= imag.fisier %>" media="(max-width:1200px)"/>
-                                            <img src="<%= imag.fisier %>" alt="briose"/>
+                                            <source srcset="<%= imag.fisier %>" media="(max-width:800px)"/>
+                                            <img src="<%= imag.fisier %>" alt="<%= imag.alternativ || imag.nume_imag %>" title="<%= imag.descriere_imag %>"/>
                                         </picture>
-                                        <figcaption><%= imag.descriere %></figcaption>
+                                        <figcaption><%= ('0' + index).slice(-2) %>: <%= imag.descriere_imag %></figcaption>
                                     </figure>
                                 </div>
+                                <% index++; %>
                             <% } %>
                         <% } %>
                     </div>
-                    
-                    
                 </section>
             </div>
         </main>

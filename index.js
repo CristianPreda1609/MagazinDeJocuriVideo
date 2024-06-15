@@ -100,11 +100,12 @@ app.use("/*",function(req, res, next){
 
 
 app.use(function(req, res,next){
-    client.query("select * from unnest(enum_range(null::categ_prajitura))", function(err, rezOptiuni){
+    client.query("select * from unnest(enum_range(null::categorie_p))", function(err, rezOptiuni){
     res.locals.optiuniMeniu=rezOptiuni.rows;
     next();
     });
 })
+
 // --------------------------utilizatori online ------------------------------------------
 
 
@@ -124,37 +125,119 @@ function getIp(req){//pentru Heroku/Render
 
 //----------------------------------------------------------Produse----------------------------------------------------------------
 app.get("/produse", function(req, res){
-    console.log(req.query)
-    var conditieQuery="";
-    if (req.query.tip){
-        conditieQuery=` where tip_produs='${req.query.tip}'`
-    }
-    client.query("select * from unnest(enum_range(null::categ_prajitura))", function(err, rezOptiuni){
+    console.log(req.query);
+    var conditieQuery = "";
+    var values = [];
 
-        client.query(`select * from jocuri ${conditieQuery}`, function(err, rez){
+    if (req.query.tip) {
+        conditieQuery += ` where tip_produs=$1`;
+        values.push(req.query.tip);
+    }
+
+    if (req.query.categorie) {
+        if (conditieQuery) {
+            conditieQuery += ` and categorie=$${values.length + 1}`;
+        } else {
+            conditieQuery = ` where categorie=$1`;
+        }
+        values.push(req.query.categorie);
+    }
+
+    client.query("select * from unnest(enum_range(null::categorie_p))", function(err, rezOptiuni){
+        if (err) {
+            console.log(err);
+            afisareEroare(res, 2);
+            return;
+        }
+
+        client.query(`select * from jocuri ${conditieQuery}`, values, function(err, rez){
             if (err){
                 console.log(err);
                 afisareEroare(res, 2);
             }
             else{
-                res.render("pagini/produse", {produse: rez.rows, optiuni:rezOptiuni.rows})
+                res.render("pagini/produse", {produse: rez.rows, optiuni: rezOptiuni.rows});
             }
-        })
+        });
     });
-})
-//--------------------------------------------------------------- Produs -----------------------------------
-app.get("/produs/:id",function(req, res){
+});
 
-    client.query(`SELECT * FROM jocuri where id = ${req.params.id}`, function(err, rez){
-        if(err){
+app.get("/seturi", function(req, res) {
+    client.query(`
+        SELECT s.id, s.nume_set, s.descriere_set, 
+               array_agg(p.nume) AS produse, 
+               array_agg(p.pret) AS preturi, 
+               array_agg(p.id) AS produs_ids
+        FROM seturi s
+        JOIN asociere_set a ON s.id = a.id_set
+        JOIN jocuri p ON a.id_produs = p.id
+        GROUP BY s.id, s.nume_set, s.descriere_set
+    `, function(err, result) {
+        if (err) {
             console.log(err);
             afisareEroare(res, 2);
+        } else {
+            let seturi = result.rows.map(set => {
+                let pret_total = set.preturi.reduce((total, pret) => total + parseFloat(pret), 0);
+                let n = set.preturi.length;
+                let reducere = Math.min(5, n) * 5;
+                let pret_final = pret_total * (1 - reducere / 100);
+                return { ...set, pret_total, pret_final };
+            });
+            res.render("pagini/seturi", { seturi });
         }
-        else{
-            res.render("pagini/produs", {prod: rez.rows[0]} )
+    });
+});
+
+
+//--------------------------------------------------------------- Produs -----------------------------------
+app.get("/produs/:id", function(req, res) {
+    let produsId = req.params.id;
+    
+    // Interogarea pentru detaliile produsului
+    let queryProdus = `SELECT * FROM jocuri WHERE id = $1`;
+    
+    // Interogarea pentru seturile care conțin produsul
+    let querySeturi = `
+        SELECT s.id, s.nume_set, s.descriere_set, 
+               array_agg(p.nume) AS produse, 
+               array_agg(p.id) AS produs_ids, 
+               array_agg(p.pret) AS preturi
+        FROM seturi s
+        JOIN asociere_set a ON s.id = a.id_set
+        JOIN jocuri p ON a.id_produs = p.id
+        WHERE s.id IN (SELECT id_set FROM asociere_set WHERE id_produs = $1)
+        GROUP BY s.id, s.nume_set, s.descriere_set
+    `;
+    
+    client.query(queryProdus, [produsId], function(errProdus, resultProdus) {
+        if (errProdus || resultProdus.rows.length == 0) {
+            console.log(errProdus);
+            afisareEroare(res, 2);
+        } else {
+            let produs = resultProdus.rows[0];
+            
+            client.query(querySeturi, [produsId], function(errSeturi, resultSeturi) {
+                if (errSeturi) {
+                    console.log(errSeturi);
+                    afisareEroare(res, 2);
+                } else {
+                    let seturi = resultSeturi.rows.map(set => {
+                        let pret_total = set.preturi.reduce((total, pret) => total + parseFloat(pret), 0);
+                        let n = set.preturi.length;
+                        let reducere = Math.min(5, n) * 5;
+                        let pret_final = pret_total * (1 - reducere / 100);
+                        return { ...set, pret_total, pret_final };
+                    });
+
+                    res.render("pagini/produs", { prod: produs, seturi: seturi });
+                }
+            });
         }
-    })
-})
+    });
+});
+
+
 //--------------------------------------Locatie---------------------------------------
 
 async function obtineUtilizatoriOnline(){
@@ -208,24 +291,27 @@ app.get(["/","/home","/index"],  async function(req, res){
 app.use(["/produse_cos","/cumpara"],express.json({limit:'2mb'}));//obligatoriu de setat pt request body de tip json
 
 
-
-app.post("/produse_cos",function(req, res){
+app.get("/produse_cos", function(req, res){
     console.log(req.body);
-    if(req.body.ids_prod.length!=0){
-        //TO DO : cerere catre AccesBD astfel incat query-ul sa fie `select nume, descriere, pret, gramaj, imagine from prajituri where id in (lista de id-uri)`
-        AccesBD.getInstanta().select({tabel:"prajituri", campuri:"nume,descriere,pret,gramaj,imagine".split(","),conditiiAnd:[`id in (${req.body.ids_prod})`]},
-        function(err, rez){
-            if(err)
+    if(req.body.ids_prod.length != 0){
+         //TO DO : cerere catre AccesBD astfel incat query-ul sa fie `select nume, descriere, pret, gramaj, imagine from prajituri where id in (lista de id-uri)`
+
+        AccesBD.getInstanta().select({
+            tabel: "prajituri",
+            campuri: ["nume", "descriere", "pret", "gramaj", "imagine"],
+            conditiiOr: [[`id in (${req.body.ids_prod.join(",")})`]]
+        }, function(err, rez) {
+            if(err) {
                 res.send([]);
-            else
-                res.send(rez.rows); 
+            } else {
+                res.send(rez.rows);
+            }
         });
-}
-    else{
+    } else {
         res.send([]);
     }
- 
 });
+
 
 
 cale_qr=__dirname+"/resurse/imagini/qrcode";
@@ -449,58 +535,41 @@ app.get("/logout", function(req, res){
 });
 app.post("/profil", function(req, res){
     console.log("profil");
-    if (!req.session.utilizator){
-        afisareEroare(res,403)
+    if (!req.session.utilizator) {
+        afisareEroare(res, 403);
         return;
     }
-    var formular= new formidable.IncomingForm();
- 
-    formular.parse(req,function(err, campuriText, campuriFile){
-       
-        var parolaCriptata=Utilizator.criptareParola(campuriText.parola[0]);
- 
-        AccesBD.getInstanta().updateParametrizat(
-            {tabel:"utilizatori",
-            campuri:["nume","prenume","email","culoare_chat"],
-            valori:[
-                `${campuriText.nume[0]}`,
-                `${campuriText.prenume[0]}`,
-                `${campuriText.email[0]}`,
-                `${campuriText.culoare_chat[0]}`],
-            conditiiAnd:[
-                `parola='${parolaCriptata}'`,
-                `username='${campuriText.username[0]}'`
-            ]
-        },          
-        function(err, rez){
-            if(err){
+    var formular = new formidable.IncomingForm();
+    
+    formular.parse(req, function(err, campuriText, campuriFile) {
+        var parolaCriptata = Utilizator.criptareParola(campuriText.parola[0]);
+        
+        AccesBD.getInstanta().update({
+            tabel: "utilizatori",
+            campuri: ["nume", "prenume", "email", "culoare_chat"],
+            valori: [campuriText.nume[0], campuriText.prenume[0], campuriText.email[0], campuriText.culoare_chat[0]],
+            conditiiAnd: [`parola='${parolaCriptata}'`, `username='${campuriText.username[0]}'`]
+        }, function(err, rez) {
+            if(err) {
                 console.log(err);
-                afisareEroare(res,2);
+                afisareEroare(res, 2);
                 return;
             }
-            console.log(rez.rowCount);
-            if (rez.rowCount==0){
-                res.render("pagini/profil",{mesaj:"Update-ul nu s-a realizat. Verificati parola introdusa."});
+            if (rez.rowCount == 0) {
+                res.render("pagini/profil", { mesaj: "Update-ul nu s-a realizat. Verificati parola introdusa." });
                 return;
+            } else {
+                req.session.utilizator.nume = campuriText.nume[0];
+                req.session.utilizator.prenume = campuriText.prenume[0];
+                req.session.utilizator.email = campuriText.email[0];
+                req.session.utilizator.culoare_chat = campuriText.culoare_chat[0];
+                res.locals.utilizator = req.session.utilizator;
             }
-            else{            
-                //actualizare sesiune
-                console.log("ceva");
-                req.session.utilizator.nume= campuriText.nume[0];
-                req.session.utilizator.prenume= campuriText.prenume[0];
-                req.session.utilizator.email= campuriText.email[0];
-                req.session.utilizator.culoare_chat= campuriText.culoare_chat[0];
-                res.locals.utilizator=req.session.utilizator;
-            }
- 
- 
-            res.render("pagini/profil",{mesaj:"Update-ul s-a realizat cu succes."});
- 
+            res.render("pagini/profil", { mesaj: "Update-ul s-a realizat cu succes." });
         });
-       
- 
     });
 });
+
 //http://${Utilizator.numeDomeniu}/cod/${utiliz.username}/${token}
 app.get("/cod/:username/:token",function(req,res){
     /*TO DO parametriCallback: cu proprietatile: request (req) si token (luat din parametrii cererii)
@@ -597,31 +666,30 @@ app.get("/useri", function(req, res){
     }
     
 });
-
-app.post("/sterge_utiliz",  function(req, res){
-
+app.post("/sterge_utiliz", function(req, res) {
     /* TO DO
     * in if testam daca utilizatorul din sesiune are dreptul sa stearga utilizatori
     * completam obiectComanda cu parametrii comenzii select pentru a prelua toti utilizatorii
     */
-    if(req?.utilizator?.areDreptul(Drepturi.stergereUtilizatori)){
-        var formular= new formidable.IncomingForm();
- 
-        formular.parse(req,function(err, campuriText, campuriFile){
-                var obiectComanda= {
-                    tabel:"utilizatori",
-                    conditiiAnd:[`id=${campuriText.id_utiliz[0]}`]
+    if (req?.utilizator?.areDreptul(Drepturi.stergereUtilizatori)) {
+        var formular = new formidable.IncomingForm();
+        
+        formular.parse(req, function(err, campuriText, campuriFile) {
+            AccesBD.getInstanta().delete({
+                tabel: "utilizatori",
+                conditiiAnd: [`id=${campuriText.id_utiliz[0]}`]
+            }, function(err, rezQuery) {
+                if (err) {
+                    console.log(err);
                 }
-                AccesBD.getInstanta().delete(obiectComanda, function(err, rezQuery){
-                console.log(err);
                 res.redirect("/useri");
             });
         });
-    }else{
-        afisareEroare(res,403);
+    } else {
+        afisareEroare(res, 403);
     }
-    
-})
+});
+
 
 function parseazaMesaje(){
     let existaInainte=creeazaXMlContactDacaNuExista();
@@ -872,7 +940,7 @@ fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
 })
  
 app.use(function(req, res,next){
-    client.query("select * from unnest(enum_range(null::categ_prajitura))", function(err, rezOptiuni){
+    client.query("select * from unnest(enum_range(null::categorie_p))", function(err, rezOptiuni){
     res.locals.optiuniMeniu=rezOptiuni.rows;
     next();
     });

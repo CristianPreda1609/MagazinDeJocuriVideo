@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compară Produse</title>
+    <%- include("../fragmente/head") %> 
+    <link rel="stylesheet" href="/resurse/css/compara.css" type="text/css">    
+
+</head>
+<body>
+    <%- include("../fragmente/header.ejs") %>
+    <h1>Compară Produse</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Caracteristică</th>
+                <th><%= produs1.nume %></th>
+                <th><%= produs2.nume %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Preț</td>
+                <td><%= produs1.pret %> Lei</td>
+                <td><%= produs2.pret %> Lei</td>
+            </tr>
+            <tr>
+                <td>Platformă</td>
+                <td><%= produs1.tip_produs %></td>
+                <td><%= produs2.tip_produs %></td>
+            </tr>
+            <tr>
+                <td>Nr. Jucători</td>
+                <td><%= produs1.nr_players %></td>
+                <td><%= produs2.nr_players %></td>
+            </tr>
+            <tr>
+                <td>Ore de joc</td>
+                <td><%= produs1.ore %> ore</td>
+                <td><%= produs2.ore %> ore</td>
+            </tr>
+            <tr>
+                <td>Specificații Minime</td>
+                <td><%= produs1.specificatii_min ? produs1.specificatii_min.join(', ') : 'N/A' %></td>
+                <td><%= produs2.specificatii_min ? produs2.specificatii_min.join(', ') : 'N/A' %></td>
+            </tr>
+            <tr>
+                <td>Specificații Maxime</td>
+                <td><%= produs1.specificatii_max ? produs1.specificatii_max.join(', ') : 'N/A' %></td>
+                <td><%= produs2.specificatii_max ? produs2.specificatii_max.join(', ') : 'N/A' %></td>
+            </tr>
+            <tr>
+                <td>Refundabil</td>
+                <td><%= produs1.refundable ? 'Da' : 'Nu' %></td>
+                <td><%= produs2.refundable ? 'Da' : 'Nu' %></td>
+            </tr>
+            <tr>
+                <td>Disponibil pe Windows</td>
+                <td><%= produs1.windows ? 'Da' : 'Nu' %></td>
+                <td><%= produs2.windows ? 'Da' : 'Nu' %></td>
+            </tr>
+            <tr>
+                <td>Disponibil pe Linux</td>
+                <td><%= produs1.linux ? 'Da' : 'Nu' %></td>
+                <td><%= produs2.linux ? 'Da' : 'Nu' %></td>
+            </tr>
+            <tr>
+                <td>Disponibil pe MacOS</td>
+                <td><%= produs1.macos ? 'Da' : 'Nu' %></td>
+                <td><%= produs2.macos ? 'Da' : 'Nu' %></td>
+            </tr>
+            <tr>
+                <td>Data adăugării</td>
+                <td><time datetime="<%= produs1.data_adaugare %>"><%= new Date(produs1.data_adaugare).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric', weekday: 'long' }) %></time></td>
+                <td><time datetime="<%= produs2.data_adaugare %>"><%= new Date(produs2.data_adaugare).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric', weekday: 'long' }) %></time></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<%- include("../fragmente/footer") %>
+
+</html>

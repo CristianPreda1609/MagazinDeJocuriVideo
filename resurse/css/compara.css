@@ -1,0 +1,36 @@
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: var(--culoare_grid);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    border: 1px solid var(--port-galben);
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: var(--verde);
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: var(--crem);
+}
+
+tr:hover {
+    background-color: var(--rosu);
+}
+
+td span {
+    display: inline-block;
+    min-width: 120px;
+}

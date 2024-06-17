@@ -236,7 +236,33 @@ app.get("/produs/:id", function(req, res) {
         }
     });
 });
-
+//--------------------------------------Compara---------------------------------------
+app.get("/compara", function(req, res) {
+    let produs1Id = req.query.produs1;
+    let produs2Id = req.query.produs2;
+    
+    let queryProdus = `SELECT * FROM jocuri WHERE id = $1`;
+    
+    client.query(queryProdus, [produs1Id], function(errProdus1, resultProdus1) {
+        if (errProdus1 || resultProdus1.rows.length == 0) {
+            console.log(errProdus1);
+            afisareEroare(res, 2);
+        } else {
+            let produs1 = resultProdus1.rows[0];
+            
+            client.query(queryProdus, [produs2Id], function(errProdus2, resultProdus2) {
+                if (errProdus2 || resultProdus2.rows.length == 0) {
+                    console.log(errProdus2);
+                    afisareEroare(res, 2);
+                } else {
+                    let produs2 = resultProdus2.rows[0];
+                    
+                    res.render("pagini/compara", { produs1: produs1, produs2: produs2 });
+                }
+            });
+        }
+    });
+});
 
 //--------------------------------------Locatie---------------------------------------
 
@@ -291,26 +317,32 @@ app.get(["/","/home","/index"],  async function(req, res){
 app.use(["/produse_cos","/cumpara"],express.json({limit:'2mb'}));//obligatoriu de setat pt request body de tip json
 
 
-app.get("/produse_cos", function(req, res){
-    console.log(req.body);
-    if(req.body.ids_prod.length != 0){
-         //TO DO : cerere catre AccesBD astfel incat query-ul sa fie `select nume, descriere, pret, gramaj, imagine from prajituri where id in (lista de id-uri)`
+app.post("/produse_cos", function(req, res) {
+    console.log("Request body:", req.body);
+    const ids = req.body.ids_prod;
 
-        AccesBD.getInstanta().select({
-            tabel: "prajituri",
-            campuri: ["nume", "descriere", "pret", "gramaj", "imagine"],
-            conditiiOr: [[`id in (${req.body.ids_prod.join(",")})`]]
-        }, function(err, rez) {
-            if(err) {
-                res.send([]);
+    if (Array.isArray(ids) && ids.length > 0) {
+        console.log("ID-urile produselor de preluat:", ids);
+
+        const idPlaceholders = ids.map((_, index) => `$${index + 1}`).join(",");
+        const query = `SELECT nume, descriere, pret, categorie, imagine FROM jocuri WHERE id IN (${idPlaceholders})`;
+
+        AccesBD.getInstanta().client.query(query, ids, function(err, rez) {
+            if (err) {
+                console.error("Eroare la baza de date:", err);
+                res.status(500).send([]);
             } else {
+                console.log("Rezultatul interogării:", rez.rows);
                 res.send(rez.rows);
             }
         });
     } else {
+        console.warn("Nu au fost furnizate ID-uri de produse valide în cerere.");
         res.send([]);
     }
 });
+
+
 
 
 
@@ -318,7 +350,7 @@ cale_qr=__dirname+"/resurse/imagini/qrcode";
 if (fs.existsSync(cale_qr))
   fs.rmSync(cale_qr, {force:true, recursive:true});
 fs.mkdirSync(cale_qr);
-client.query("select id from prajituri", function(err, rez){
+client.query("select id from jocuri", function(err, rez){
     for(let prod of rez.rows){
         let cale_prod=obGlobal.protocol+obGlobal.numeDomeniu+"/produs/"+prod.id;
         //console.log(cale_prod);
@@ -372,7 +404,7 @@ app.post("/cumpara",function(req, res){
 
     if (req?.utilizator?.areDreptul?.(Drepturi.cumparareProduse)){
         AccesBD.getInstanta().select({
-            tabel:"prajituri",
+            tabel:"jocuri",
             campuri:["*"],
             conditiiAnd:[`id in (${req.body.ids_prod})`]
         }, function(err, rez){

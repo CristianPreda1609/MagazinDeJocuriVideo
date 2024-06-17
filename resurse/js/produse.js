@@ -1,16 +1,71 @@
-window.addEventListener("load", function() {
-    // Salvează filtrele în localStorage sau cookie dacă "salveaza filtrare" este bifat
+document.addEventListener('DOMContentLoaded', function() {
+    let initialOrder = [];
+
+    function saveInitialOrder() {
+        let produse = document.getElementsByClassName("produs");
+        initialOrder = Array.from(produse);
+    }
+
+    function validateInputs() {
+        let isValid = true;
+
+
+        const inpPret = document.getElementById('inp-pret');
+        if (isNaN(inpPret.value) || inpPret.value < 0) {
+            inpPret.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            inpPret.classList.remove('is-invalid');
+        }
+
+        const inpCategorie = document.getElementById('inp-categorie');
+        if (inpCategorie.value.trim() === '') {
+            inpCategorie.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            inpCategorie.classList.remove('is-invalid');
+        }
+
+        const inpOre = document.getElementById('inp-ore');
+        if (isNaN(inpOre.value) || inpOre.value < 0) {
+            inpOre.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            inpOre.classList.remove('is-invalid');
+        }
+
+        const inpOS = document.getElementById('inp-os');
+        if (inpOS.value.trim() === '') {
+            inpOS.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            inpOS.classList.remove('is-invalid');
+        }
+
+        const inpTip = document.getElementById('inp-tip');
+        if ([...inpTip.options].filter(option => option.selected).length === 0) {
+            inpTip.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            inpTip.classList.remove('is-invalid');
+        }
+
+        return isValid;
+    }
+
     function saveFilters() {
         const filterState = {
             name: document.getElementById("inp-nume").value.toLowerCase().trim(),
             pret: parseFloat(document.getElementById("inp-pret").value),
             categorie: document.getElementById("inp-categorie").value.toLowerCase().trim(),
-            ore: document.querySelector('input[name="gr_rad"]:checked').value
+            ore: parseInt(document.getElementById("inp-ore").value),
+            refundabil: document.querySelector('input[name="gr_rad_refund"]:checked').value,
+            os: document.getElementById("inp-os").value.toLowerCase().trim(),
+            tip: Array.from(document.getElementById("inp-tip").options).filter(option => option.selected).map(option => option.value.toLowerCase().trim())
         };
         localStorage.setItem('filterState', JSON.stringify(filterState));
     }
 
-    // Încarcă filtrele din localStorage sau cookie
     function loadFilters() {
         const savedFilterState = localStorage.getItem('filterState');
         if (savedFilterState) {
@@ -18,18 +73,22 @@ window.addEventListener("load", function() {
             document.getElementById("inp-nume").value = filterState.name;
             document.getElementById("inp-pret").value = filterState.pret;
             document.getElementById("inp-categorie").value = filterState.categorie;
-            document.querySelector(`input[name="gr_rad"][value="${filterState.ore}"]`).checked = true;
+            document.getElementById("inp-ore").value = filterState.ore;
+            document.getElementById("inp-os").value = filterState.os;
+            filterState.tip.forEach(val => {
+                document.querySelector(`#inp-tip option[value="${val}"]`).selected = true;
+            });
+            document.querySelector(`input[name="gr_rad_refund"][value="${filterState.refundabil}"]`).checked = true;
             document.getElementById("infoRange").innerHTML = `(${filterState.pret})`;
+            document.getElementById("infoRangeOre").innerHTML = `(${filterState.ore})`;
             document.getElementById("filtrare").click();
         }
     }
 
-    // Șterge filtrele salvate din localStorage sau cookie
     function clearFilters() {
         localStorage.removeItem('filterState');
     }
 
-    // Eveniment pentru schimbarea stării checkbox-ului
     document.getElementById("salveaza-filtrare").addEventListener("change", function() {
         if (this.checked) {
             saveFilters();
@@ -38,84 +97,107 @@ window.addEventListener("load", function() {
         }
     });
 
-    // Eveniment pentru schimbarea valorii slider-ului de preț
     document.getElementById("inp-pret").addEventListener("input", function() {
         document.getElementById("infoRange").innerHTML = `(${this.value})`;
     });
 
-    // Eveniment pentru butonul de filtrare
+    document.getElementById("inp-ore").addEventListener("input", function() {
+        document.getElementById("infoRangeOre").innerHTML = `(${this.value})`;
+    });
+
     document.getElementById("filtrare").addEventListener("click", function() {
+        if (!validateInputs()) {
+            alert("Vă rugăm să completați corect toate câmpurile.");
+            return;
+        }
+
         let inpNume = document.getElementById("inp-nume").value.toLowerCase().trim();
-
-        let vRadio = document.getElementsByName("gr_rad");
-        let inpOre;
-        for (let r of vRadio) {
-            if (r.checked) {
-                inpOre = r.value;
-                break;
-            }
-        }
-
-        let minOre, maxOre;
-        if (inpOre != "toate") {
-            let aux = inpOre.split(":");
-            minOre = parseInt(aux[0]);
-            maxOre = parseInt(aux[1]);
-        }
-
+        let inpOre = parseInt(document.getElementById("inp-ore").value);
+        let inpRefundabil = document.querySelector('input[name="gr_rad_refund"]:checked').value;
         let inpPret = parseFloat(document.getElementById("inp-pret").value);
-
         let inpCateg = document.getElementById("inp-categorie").value.toLowerCase().trim();
+        let inpOS = document.getElementById("inp-os").value.toLowerCase().trim();
+        let inpTipOptions = document.getElementById("inp-tip").options;
+        let inpTip = Array.from(inpTipOptions).filter(option => option.selected).map(option => option.value.toLowerCase().trim());
 
         let produse = document.getElementsByClassName("produs");
         for (let produs of produse) {
-            let valNumeElem = produs.getElementsByTagName("h3")[0];
+            let valNumeElem = produs.querySelector("h3 a");
             let valNume = valNumeElem ? valNumeElem.innerText.toLowerCase().trim() : "";
             let cond1 = valNume.startsWith(inpNume);
 
-            let valOreElem = produs.querySelector("td:nth-child(2)");
+            let valOreElem = produs.querySelector("td:nth-child(4)");
             let valOre = valOreElem ? parseInt(valOreElem.innerText) : 0;
-            let cond2 = (inpOre == "toate" || (minOre <= valOre && valOre < maxOre));
+            let cond2 = (valOre >= inpOre);
+
+            let valRefundElem = produs.querySelector(".val_refund");
+            let valRefund = valRefundElem ? valRefundElem.innerText.toLowerCase().trim() : "";
+            let cond3 = (inpRefundabil == "toate" || inpRefundabil == valRefund);
 
             let valPretElem = produs.querySelector("td:nth-child(2)");
             let valPret = valPretElem ? parseFloat(valPretElem.innerText.replace(" Lei", "")) : 0;
-            let cond3 = (valPret >= inpPret);
+            let cond4 = (valPret >= inpPret);
 
             let valCategElem = produs.querySelector(".val-categorie");
             let valCateg = valCategElem ? valCategElem.innerText.toLowerCase().trim() : "";
-            let cond4 = (inpCateg == "toate" || inpCateg == valCateg);
+            let cond5 = (inpCateg == "toate" || inpCateg == valCateg);
 
-            if (cond1 && cond2 && cond3 && cond4) {
+            let valOSElem1 = produs.querySelector(".windows");
+            let cond6 = valOSElem1 && valOSElem1.innerText.toLowerCase().trim() === "da" && inpOS.includes("windows");
+            
+            let valOSElem2 = produs.querySelector(".linux");
+            let cond7 = valOSElem2 && valOSElem2.innerText.toLowerCase().trim() === "da" && inpOS.includes("linux");
+            
+            let valOSElem3 = produs.querySelector(".mac");
+            let cond8 = valOSElem3 && valOSElem3.innerText.toLowerCase().trim() === "da" && inpOS.includes("macos");
+            
+            let osCondition = inpOS === "" || cond6 || cond7 || cond8;
+            
+            let valTipElem = produs.querySelector(".plat");
+            let valTip = valTipElem ? valTipElem.innerText.toLowerCase().trim() : "";
+            let cond9 = inpTip.includes(valTip) || inpTip.length === 0;
+            console.log(valTipElem);
+
+            if (cond1 && cond2 && cond3 && cond4 && cond5 && osCondition && cond9) {
                 produs.style.display = "block";
             } else {
                 produs.style.display = "none";
             }
         }
 
-        // Salvează filtrele dacă checkbox-ul este bifat
         if (document.getElementById("salveaza-filtrare").checked) {
             saveFilters();
         }
 
-        // Update the price display
         document.getElementById("infoRange").innerHTML = `(${inpPret})`;
+        document.getElementById("infoRangeOre").innerHTML = `(${inpOre})`;
     });
 
-    // Eveniment pentru butonul de resetare
     document.getElementById("resetare").onclick = function() {
-        document.getElementById("inp-nume").value = "";
-        document.getElementById("inp-pret").value = document.getElementById("inp-pret").min;
-        document.getElementById("inp-categorie").value = "toate";
-        document.getElementById("i_rad4").checked = true;
-        document.getElementById("infoRange").innerHTML = "(0)";
-        let produse = document.getElementsByClassName("produs");
-        for (let prod of produse) {
-            prod.style.display = "block";
-        }
-        document.getElementById("salveaza-filtrare").checked = false;
-        clearFilters();
-    };
+        if (confirm("Ești sigur că vrei să resetezi filtrele?")) {
+            document.getElementById("inp-nume").value = "";
+            document.getElementById("inp-pret").value = document.getElementById("inp-pret").min;
+            document.getElementById("inp-categorie").value = "toate";
+            document.getElementById("inp-ore").value = document.getElementById("inp-ore").min;
+            document.getElementById("i_rad3").checked = true;
+            document.getElementById("inp-os").value = "";
+            Array.from(document.getElementById("inp-tip").options).forEach(option => option.selected = false);
+            document.getElementById("infoRange").innerHTML = "(0)";
+            document.getElementById("infoRangeOre").innerHTML = "(0)";
+            let produse = document.getElementsByClassName("produs");
+            for (let prod of produse) {
+                prod.style.display = "block";
+            }
+            document.getElementById("salveaza-filtrare").checked = false;
+            clearFilters();
 
+            // Resetează ordinea produselor la cea inițială
+            let container = document.querySelector('.grid-produse');
+            initialOrder.forEach(prod => {
+                container.appendChild(prod);
+            });
+        }
+    };
     window.onkeydown = function(e) {
         if (e.key == "c" && e.altKey) {
             let suma = 0;
@@ -169,11 +251,9 @@ window.addEventListener("load", function() {
     document.getElementById("sortDescrescNume").onclick = function() {
         sorteaza(-1);
     };
-
-    // Încarcă filtrele la încărcarea paginii
+    saveInitialOrder();
     loadFilters();
 });
-
 document.addEventListener('DOMContentLoaded', function() {
     const textarea = document.getElementById('inp-nume');
 

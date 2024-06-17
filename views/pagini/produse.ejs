@@ -1,196 +1,245 @@
 <!DOCTYPE html>
 <html lang="ro">
-    <head>
-        <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
-        <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
-        <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
-        <title>Cofetăria Dulcelind - home</title>
-        <%- include("../fragmente/head") %>     
-        <script type="text/javascript" src=/resurse/js/produse.js></script>
-        <script type="text/javascript" src=/resurse/js/produse-cos.js></script>
-    </head>
-    <body>
-    <%- include("../fragmente/header") %>
+<head>
+    <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
+    <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
+    <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
+    <title>Cofetăria Dulcelind - home</title>
+    <%- include("../fragmente/head") %>     
+    <script type="text/javascript" src="/resurse/js/produse.js"></script>
+    <script type="text/javascript" src="/resurse/js/produse-cos.js"></script>
+    <script src="/resurse/js/compara.js"></script>
 
-    <main>
-        <div class="form-floating mb-3"></div>
-        <div class="container mt-5">
-            <div class="form-floating mb-3">
-                <label for="inp-nume" class="floating-label">Nume produs</label>
-                <input class="form-control" placeholder="Leave a comment here" id="inp-nume" style="height: 100px"></input>
-                <div class="invalid-feedback">
-                    Te rugăm să completezi acest câmp.
-                </div>
+</head>
+<body>
+<%- include("../fragmente/header") %>
+
+<main>
+    <div class="form-floating mb-3"></div>
+    <div class="container mt-5">
+        <div class="form-floating mb-3">
+            <label for="inp-nume" class="floating-label">Nume produs</label>
+            <input class="form-control" placeholder="Leave a comment here" id="inp-nume" style="height: 100px">
+            <div class="invalid-feedback">
+                Te rugăm să completezi acest câmp.
             </div>
         </div>
-        <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
-        <div class="container">
-            <div class="container">
-                <fieldset class="form-group">
-                    <div class="row">
-                        <legend class="col-form-label col-sm-2 pt-0">Număr de ore:</legend>
-                        <div class="col-sm-10">
-                            <div class="form-check">
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-secondary">
-                                        Mai puțin de 30
-                                        <input id="i_rad1" name="gr_rad" value="0:30" type="radio" autocomplete="off">
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-check">
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-secondary">
-                                        Între 30 și 60
-                                        <input id="i_rad2" name="gr_rad" value="30:60" type="radio" autocomplete="off">
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-check">
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-secondary">
-                                        Mai mult de 60
-                                        <input id="i_rad3" name="gr_rad" value="60:1000000000" type="radio" autocomplete="off">
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-check">
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-secondary active">
-                                        Toate
-                                        <input id="i_rad4" name="gr_rad" value="toate" type="radio" autocomplete="off" checked>
-                                    </label>
-                                </div>
-                            </div>
+    </div>
+
+    <div class="container">
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">Număr de ore: Minim <span>Minim 0</span>
+                </legend>
+                <div class="col-sm-10">
+                    <input type="range" class="form-range" id="inp-ore" value="0" min="0" max="100">
+                    <span>Maxim: 100 Curent :</span><span id="infoRangeOre">(0)</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="container">
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">Refundabil:</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-secondary">
+                                Da
+                                <input id="i_rad1" name="gr_rad_refund" value="da" type="radio" autocomplete="off">
+                            </label>
                         </div>
                     </div>
-                </fieldset>
-            </div>
-            
-
-            <label for="customRange1" class="form-label"> Pret minim: <input type="range" class="form-range" id="inp-pret" value="0" min="0"  max="70"> <span id="infoRange">(0)</span></label>
-            <label>Select simplu:
-                <select id="inp-categorie">
-                    <option id="sel-toate" selected value="toate">toate</option>
-                    <% for (let opt of locals.optiuni) { %>
-                        <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
-                    <% } %>
-                </select>
-            </label>
-
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="salveaza-filtrare">
-                <label class="form-check-label" for="salveaza-filtrare">Salvează filtrare</label>
-            </div>
-
-        <p>
-            <fieldset class="form-group">
-                <div class="col-sm-10">
-                    <div class="form-check"> 
-                        <button id="filtrare" class="btn btn-primary btn-sm">
-                            <i class="bi bi-filter"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
-                                <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z"/>
-                            </svg></i> <span class="button-text">Filtreaza</span>
-                        </button>
+                    <div class="form-check">
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-secondary">
+                                Nu
+                                <input id="i_rad2" name="gr_rad_refund" value="nu" type="radio" autocomplete="off">
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-check"> 
-                        <button id="resetare" class="btn btn-secondary btn-sm">
-                            <i class="bi bi-arrow-counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
-                                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
-                            </svg></i> <span class="button-text">Reseteaza</span>
-                        </button><br/>
-                    </div>
-                    <div class="form-check"> 
-                        <button id="sortCrescNume" class="btn btn-primary btn-sm">
-                            <i class="bi bi-sort-down-alt"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-down-alt" viewBox="0 0 16 16">
-                                <path d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5"/>
-                            </svg></i> <span class="button-text">Sorteaza crescator dupa pret si nume</span>
-                        </button>
-                    </div>
-                    <div class="form-check"> 
-                        <button id="sortDescrescNume" class="btn btn-secondary btn-sm">
-                            <i class="bi bi-sort-up-alt"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-up-alt" viewBox="0 0 16 16">
-                                <path d="M3.5 13.5a.5.5 0 0 1-1 0V4.707L1.354 5.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707-.708L3.5 4.707zm4-9.5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5"/>
-                            </svg></i> <span class="button-text">Sorteaza descrescator dupa pret si nume</span>
-                        </button>
+                    <div class="form-check">
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-secondary active">
+                                Toate
+                                <input id="i_rad3" name="gr_rad_refund" value="toate" type="radio" autocomplete="off"
+                                    checked>
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </fieldset> 
-        </p>
-        
-        <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
-        <section id="produse">
-            <h2>Produse</h2>
-            <div class="grid-produse">
-                <% for(let prod of locals.produse) { %>
-                    <article id="elem_<%- prod.id %>" class="produs <%- prod.categorie.replace(/\s+/g, '') %>">
-                        <h3><a href="/produs/<%- prod.id %>"><%- prod.nume %></a></h3>
-                        <table>
-                            <tr>
-                                <td>Preț:</td>
-                                <td><%- prod.pret %> Lei</td>
-                            </tr>
-                            <tr>
-                                <td>Platformă:</td>
-                                <td><%- prod.tip_produs %></td>
-                            </tr>
-                            <tr>
-                                <td>Nr. jucători:</td>
-                                <td><%- prod.nr_players %></td>
-                            </tr>
-                            <tr>
-                                <td>Ore de joc:</td>
-                                <td><%- prod.ore %> ore</td>
-                            </tr>
-                            <tr>
-                                <td>Specificații minime:</td>
-                                <td><%- prod.specificatii_min ? prod.specificatii_min.join(', ') : 'N/A' %></td>
-                            </tr>
-                            <tr>
-                                <td>Specificații maxime:</td>
-                                <td><%- prod.specificatii_max ? prod.specificatii_max.join(', ') : 'N/A' %></td>
-                            </tr>
-                            <tr>
-                                <td>Refundabil:</td>
-                                <td><%- prod.refundable ? 'Da' : 'Nu' %></td>
-                            </tr>
-                            <tr>
-                                <td>Disponibil pe Windows:</td>
-                                <td><%- prod.windows ? 'Da' : 'Nu' %></td>
-                            </tr>
-                            <tr>
-                                <td>Disponibil pe Linux:</td>
-                                <td><%- prod.linux ? 'Da' : 'Nu' %></td>
-                            </tr>
-                            <tr>
-                                <td>Disponibil pe MacOS:</td>
-                                <td><%- prod.macos ? 'Da' : 'Nu' %></td>
-                            </tr>
-                            <tr>
-                                <td>Data adăugării:</td>
-                                <td><time datetime="<%- prod.data_adaugare %>"><%- new Date(prod.data_adaugare).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric', weekday: 'long' }) %></time></td>
-                            </tr>
-                        </table>
-                        <figure>
-                            <a href="/produs/<%- prod.id %>"><img src="/resurse/imagini/produse/<%- prod.imagine %>" alt="<%- prod.nume %>" style="width:100px;height:100px;"></a>
-                        </figure>
-                        <p><%- prod.descriere %></p>
-                        <p>Categorie: <span class="val-categorie"><%- prod.categorie %></span></p>
-                        <label class="selecteaza-cos">
-                            Selectează:<br/>
-                            <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
-                        </label>
-                    </article>
-                <% } %>
             </div>
-        </section>
-    </main>
+        </fieldset>
+    </div>
+
+    <label for="inp-pret" class="form-label"> Pret
+        <span>Minim 0</span>
+        <input type="range" class="form-range" id="inp-pret" value="0" min="0" max="70"
+            oninput="updateRangeValue('inp-pret', 'infoRange')">
+        <span>Maxim 70 <span id="infoRange">0</span></span>
+    </label>
+    <label>Categorie:
+        <select id="inp-categorie">
+            <option id="sel-toate" selected value="toate">toate</option>
+            <% for (let opt of locals.optiuni) { %>
+                <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+            <% } %>
+        </select>
+    </label>
+
+    <!-- Datalist for Operating System -->
+    <div>
+        <label for="inp-os" class="floating-label">Sistem de operare</label>
+        <input list="os-options" class="form-control" id="inp-os" placeholder="Selectează sistemul de operare">
+        <datalist id="os-options">
+            <option value="Windows">
+            <option value="Linux">
+            <option value="MacOS">
+        </datalist>
+    </div>
+
+    <!-- Multi-select for Product Type -->
+    <label for="inp-tip" class="floating-label">Tip produs</label>
+    <select id="inp-tip" class="form-control" multiple>
+        <option value="steam">Steam</option>
+        <option value="xbox">Xbox</option>
+        <option value="playstation">PlayStation</option>
+    </select>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="salveaza-filtrare">
+        <label class="form-check-label" for="salveaza-filtrare">Salvează filtrare</label>
+    </div>
+
+
+    <p>
+    <fieldset class="form-group">
+        <div class="col-sm-10">
+            <div class="form-check">
+                <button id="filtrare" class="btn btn-primary btn-sm">
+                    <i class="bi bi-filter"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z" />
+                        </svg></i> <span class="button-text">Filtreaza</span>
+                </button>
+            </div>
+            <div class="form-check">
+                <button id="resetare" class="btn btn-secondary btn-sm">
+                    <i class="bi bi-arrow-counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
+                            <path
+                                d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466" />
+                        </svg></i> <span class="button-text">Reseteaza</span>
+                </button><br />
+            </div>
+            <div class="form-check">
+                <button id="sortCrescNume" class="btn btn-primary btn-sm">
+                    <i class="bi bi-sort-down-alt"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-sort-down-alt" viewBox="0 0 16 16">
+                            <path
+                                d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
+                        </svg></i> <span class="button-text">Sorteaza crescator dupa pret si nume</span>
+                </button>
+            </div>
+            <div class="form-check">
+                <button id="sortDescrescNume" class="btn btn-secondary btn-sm">
+                    <i class="bi bi-sort-up-alt"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-sort-up-alt" viewBox="0 0 16 16">
+                            <path
+                                d="M3.5 13.5a.5.5 0 0 1-1 0V4.707L1.354 5.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707-.708L3.5 4.707zm4-9.5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
+                        </svg></i> <span class="button-text">Sorteaza descrescator dupa pret si nume</span>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+    </p>
+
+    <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
+    <section id="produse">
+        <h2>Produse</h2>
+        <div class="grid-produse">
+            <% for(let prod of locals.produse) { %>
+            <article id="elem_<%- prod.id %>" class="produs <%- prod.categorie.replace(/\s+/g, '') %>">
+                <h3><a href="/produs/<%- prod.id %>"><%- prod.nume %></a></h3>
+                <table>
+                    <tr>
+                        <td>Preț:</td>
+                        <td><%- prod.pret %> Lei</td>
+                    </tr>
+                    <tr>
+                        <td>Platformă:</td>
+                        <td class="plat"><%- prod.tip_produs %></td>
+                    </tr>
+                    <tr>
+                        <td>Nr. jucători:</td>
+                        <td><%- prod.nr_players %></td>
+                    </tr>
+                    <tr>
+                        <td>Ore de joc:</td>
+                        <td><%- prod.ore %> ore</td>
+                    </tr>
+                    <tr>
+                        <td>Specificații minime:</td>
+                        <td><%- prod.specificatii_min ? prod.specificatii_min.join(', ') : 'N/A' %></td>
+                    </tr>
+                    <tr>
+                        <td>Specificații maxime:</td>
+                        <td><%- prod.specificatii_max ? prod.specificatii_max.join(', ') : 'N/A' %></td>
+                    </tr>
+                    <tr>
+                        <td>Refundabil:</td>
+                        <td class="val_refund"><%- prod.refundable ? 'Da' : 'Nu' %></td>
+                    </tr>
+                    <tr>
+                        <td>Disponibil pe Windows:</td>
+                        <td class="windows"><%- prod.windows ? 'Da' : 'Nu' %></td>
+                    </tr>
+                    <tr>
+                        <td>Disponibil pe Linux:</td>
+                        <td class="linux"><%- prod.linux ? 'Da' : 'Nu' %></td>
+                    </tr>
+                    <tr>
+                        <td>Disponibil pe MacOS:</td>
+                        <td class="mac"><%- prod.macos ? 'Da' : 'Nu' %></td>
+                    </tr>
+                    <tr>
+                        <td>Data adăugării:</td>
+                        <td>
+                            <time datetime="<%- prod.data_adaugare %>">
+                                <%- new Date(prod.data_adaugare).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric', weekday: 'long' }) %>
+                            </time>
+                        </td>
+                    </tr>
+                </table>
+                <figure>
+                    <a href="/produs/<%- prod.id %>"><img src="/resurse/imagini/produse/<%- prod.imagine %>"
+                            alt="<%- prod.nume %>" style="width:100px;height:100px;"></a>
+                </figure>
+                <p><%- prod.descriere %></p>
+                <p>Categorie: <span class="val-categorie"><%- prod.categorie %></span></p>
+                <label class="selecteaza-cos">
+                    Selectează:<br />
+                    <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
+                </label>
+                <button class="compara-btn" onclick="adaugaLaComparare('<%- prod.id %>', '<%- prod.nume %>')">Compară</button>
+                
+            </article>
+            <% } %>
+            <div id="container-comparare"
+            style="display: none; position: fixed; bottom: 10px; right: 10px; background: #fff; border: 1px solid #ccc; padding: 10px;">
+            <div id="produse-comparare"></div>
+            <button onclick="afiseazaComparare()">Afișează</button>
+        </div>
+        </div>
+    </section>
+</main>
 
     <%- include("../fragmente/footer") %>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    </body>
+</body>
 </html>

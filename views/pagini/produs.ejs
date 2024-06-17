@@ -7,6 +7,8 @@
     <%- include("../fragmente/head") %>     
     <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
     <script src="/resurse/js/produs_acordeon.js"></script>
+    <script src="/resurse/js/compara.js"></script>
+
 
 </head>
 <body>
@@ -171,12 +173,15 @@
                         <p>Preț final cu reducere: <%= set.pret_final.toFixed(2) %> RON</p>
                     </div>
                 <% }) %>
+                <button class="compara-btn" onclick="adaugaLaComparare('<%- prod.id %>', '<%- prod.nume %>')">Compară</button>
+                <div id="container-comparare" style="display: none; position: fixed; bottom: 10px; right: 10px; background: #fff; border: 1px solid #ccc; padding: 10px;">
+                    <div id="produse-comparare"></div>
+                    <button onclick="afiseazaComparare()">Afișează</button>
+                </div>                
             </article>
         </section>
     </main>
     <%- include("../fragmente/footer") %>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+
 </body>
 </html>

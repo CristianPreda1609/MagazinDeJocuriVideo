@@ -9,12 +9,18 @@
     <script type="text/javascript" src="/resurse/js/produse.js"></script>
     <script type="text/javascript" src="/resurse/js/produse-cos.js"></script>
     <script src="/resurse/js/compara.js"></script>
-
+    <script src="/resurse/js/oferte.js"></script>
 </head>
 <body>
 <%- include("../fragmente/header") %>
 
 <main>
+    <div id="oferta-container" class="oferta-container">
+        <h2>Oferta Curentă</h2>
+        <p id="oferta-text"></p>
+        <p id="timer"></p>
+            
+    </div>
     <div class="form-floating mb-3"></div>
     <div class="container mt-5">
         <div class="form-floating mb-3">
@@ -167,6 +173,14 @@
             <article id="elem_<%- prod.id %>" class="produs <%- prod.categorie.replace(/\s+/g, '') %>">
                 <h3><a href="/produs/<%- prod.id %>"><%- prod.nume %></a></h3>
                 <table>
+                    <tr>
+                        <td>Preț Nou:</td>
+                        <td>
+                            <span class="pret-vechi"><%- prod.pret %> Lei</span>
+                            <span class="pret-redus"></span>
+                        </td>
+                    </tr>  
+                    </tr>
                     <tr>
                         <td>Preț:</td>
                         <td><%- prod.pret %> Lei</td>

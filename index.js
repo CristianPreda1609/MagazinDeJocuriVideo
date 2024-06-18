@@ -18,6 +18,7 @@ const QRCode= require('qrcode');
 const puppeteer=require('puppeteer');
 const helmet=require('helmet');
 const { MongoClient } = require("mongodb");
+const { startOfferGeneration } = require('./resurse/js/generateOffers');
 
 
 var client = new Client({database:"cti_2024",
@@ -105,7 +106,6 @@ app.use(function(req, res,next){
     next();
     });
 })
-
 // --------------------------utilizatori online ------------------------------------------
 
 

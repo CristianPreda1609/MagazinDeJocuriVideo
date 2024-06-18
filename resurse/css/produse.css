@@ -86,3 +86,12 @@ main{
         margin-right: 0; /*fara margine pe ecran mic*/
       }
 }
+.pret-vechi {
+    text-decoration: line-through;
+    color: red;
+}
+
+.pret-redus {
+    font-weight: bold;
+    color: green;
+}

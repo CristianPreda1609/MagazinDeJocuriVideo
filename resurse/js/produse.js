@@ -270,3 +270,25 @@ document.addEventListener('DOMContentLoaded', function() {
         textarea.classList.add('is-invalid');
     }
 });
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('resurse/json/oferte.json')
+        .then(response => response.json())
+        .then(data => {
+            const oferta = data.oferte[0];
+            if (!oferta) return;
+
+            const produse = document.querySelectorAll('.produs');
+            produse.forEach(produs => {
+                const categorie = produs.querySelector('.val-categorie').textContent.trim();
+                if (categorie === oferta.categorie) {
+                    const pretElem = produs.querySelector('.pret');
+                    const pretOriginal = parseFloat(pretElem.textContent.replace(' Lei', ''));
+                    const pretRedus = pretOriginal - (pretOriginal * oferta.reducere / 100);
+
+                    pretElem.classList.add('pret-vechi');
+                    produs.querySelector('.pret-redus').textContent = `${pretRedus.toFixed(2)} Lei`;
+                }
+            });
+        })
+        .catch(error => console.error('Eroare la încărcarea ofertei:', error));
+});

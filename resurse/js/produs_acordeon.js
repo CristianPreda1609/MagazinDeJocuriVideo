@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Function to save the state of the accordion
     function saveAccordionState() {
         let accordionState = {};
         document.querySelectorAll('.collapse').forEach((element, index) => {
@@ -8,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('accordionState', JSON.stringify(accordionState));
     }
 
-    // Function to restore the state of the accordion
     function restoreAccordionState() {
         let accordionState = JSON.parse(localStorage.getItem('accordionState'));
         if (accordionState) {
@@ -22,10 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Restore accordion state on page load
     restoreAccordionState();
 
-    // Save accordion state on toggle
     document.querySelectorAll('.collapse').forEach(element => {
         element.addEventListener('shown.bs.collapse', saveAccordionState);
         element.addEventListener('hidden.bs.collapse', saveAccordionState);

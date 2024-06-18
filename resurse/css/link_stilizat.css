@@ -1,9 +1,9 @@
 :root {
-    --visited-link-color: #a0a0a0; 
+    --visited-link-color: rgb(0, 157, 255); 
     --external-link-color: #0000FF; 
   }
   
-  a:visited {
+  a:not(.taburi-iframe a):visited {
     color: var(--visited-link-color);
   }
   
